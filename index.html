@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pathfinder 2e Index</title>
+<style>
+  :root {
+    --bg: #1a1410;
+    --bg-2: #0f0b08;
+    --panel: #261c16;
+    --panel-2: #2f2319;
+    --border: #4a3a2c;
+    --border-strong: #6b5238;
+    --text: #e8dcc8;
+    --muted: #a89684;
+    --accent: #c9a96e;
+    --accent-hover: #e6c789;
+    --heading: #d4b896;
+    --shadow: 0 6px 18px rgba(0,0,0,0.45);
+    --shadow-hover: 0 14px 32px rgba(0,0,0,0.6), 0 0 0 1px var(--accent);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--text);
+    line-height: 1.6;
+    background:
+      radial-gradient(1200px 600px at 50% -100px, rgba(201,169,110,0.08), transparent 60%),
+      radial-gradient(900px 500px at 100% 100%, rgba(201,169,110,0.04), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .crest {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 0.75rem;
+    display: block;
+    opacity: 0.9;
+  }
+  h1 {
+    font-size: 2.75rem;
+    margin: 0 0 0.25rem;
+    color: var(--heading);
+    letter-spacing: 0.08em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .subtitle {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    margin: 0;
+  }
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--border-strong);
+    margin: 1.25rem auto 2rem;
+    max-width: 320px;
+  }
+  .rule::before, .rule::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--border);
+  }
+  .rule svg { opacity: 0.8; }
+
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+  .tab {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 1.05rem;
+    padding: 0.7rem 1.75rem;
+    cursor: pointer;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    transition: color 0.15s, background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .tab:hover {
+    color: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+  .tab.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: bold;
+  }
+
+  .panel { display: none; animation: fade 0.25s ease; }
+  .panel.active { display: block; }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .grid.featured {
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  }
+
+  .card {
+    position: relative;
+    display: block;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent);
+  }
+  .card:focus-visible {
+    outline: 2px solid var(--accent-hover);
+    outline-offset: 3px;
+  }
+
+  .thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background:
+      linear-gradient(135deg, #3a2c20 0%, #1f1610 100%);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .thumb img.loaded { opacity: 1; }
+  .thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(15,11,8,0.55) 100%);
+    pointer-events: none;
+  }
+  .thumb.pdf {
+    display: grid;
+    place-items: center;
+    background:
+      repeating-linear-gradient(45deg, rgba(201,169,110,0.04) 0 12px, transparent 12px 24px),
+      linear-gradient(135deg, #3a2c20 0%, #1f1610 100%);
+  }
+
+  .body {
+    padding: 1.25rem 1.4rem 1.4rem;
+  }
+  .card .title {
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0 0.4rem;
+    letter-spacing: 0.02em;
+    transition: color 0.15s;
+  }
+  .card.primary .title { font-size: 1.4rem; }
+  .card:hover .title { color: var(--accent-hover); }
+  .card .desc {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: rgba(15,11,8,0.85);
+    color: var(--accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(4px);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: bold;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .container { padding: 2rem 1rem 3rem; }
+    .grid.featured { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <svg class="crest" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M32 4 L56 16 L56 34 C56 48 44 58 32 60 C20 58 8 48 8 34 L8 16 Z"
+            stroke="#c9a96e" stroke-width="2" fill="rgba(201,169,110,0.08)"/>
+      <path d="M32 18 L38 30 L32 42 L26 30 Z" fill="#c9a96e" opacity="0.85"/>
+      <circle cx="32" cy="30" r="3" fill="#1a1410"/>
+    </svg>
+    <h1>Pathfinder 2e Index</h1>
+    <p class="subtitle">Seven Dooms for Sandpoint</p>
+    <div class="rule" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1 L9 5 L13 7 L9 9 L7 13 L5 9 L1 7 L5 5 Z" fill="#c9a96e"/></svg>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" role="tab" aria-selected="true" aria-controls="panel-info" data-target="panel-info">Info</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-tools" data-target="panel-tools">Tools</button>
+  </nav>
+
+  <section id="panel-info" class="panel active" role="tabpanel">
+    <div class="grid featured">
+
+      <a class="card primary" href="https://plasticmacaroni.github.io/guide-to-sandpoint/" target="_blank" rel="noopener" title="https://plasticmacaroni.github.io/guide-to-sandpoint/">
+        <div class="thumb">
+          <span class="tag">Guide</span>
+          <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Fguide-to-sandpoint%2F?w=900&h=560" alt="">
+        </div>
+        <div class="body">
+          <h3 class="title">Sandpoint Quick Reference Guide</h3>
+          <p class="desc">Searchable directory of locations, NPCs, shops, temples, guilds, and hazards in Sandpoint. Interactive map + historical background.</p>
+        </div>
+      </a>
+
+      <a class="card primary" href="https://plasticmacaroni.github.io/guide-to-sandpoint/SevenDoomsforSandpoint_PlayersGuide.pdf" target="_blank" rel="noopener" title="SevenDoomsforSandpoint_PlayersGuide.pdf">
+        <div class="thumb pdf" aria-hidden="true">
+          <span class="tag">PDF</span>
+          <svg width="120" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 8 H82 L100 26 V140 C100 142 98 144 96 144 H20 C18 144 16 142 16 140 V12 C16 10 18 8 20 8 Z"
+                  fill="#2f2319" stroke="#c9a96e" stroke-width="2"/>
+            <path d="M82 8 V26 H100" stroke="#c9a96e" stroke-width="2" fill="none"/>
+            <text x="58" y="92" text-anchor="middle" fill="#c9a96e" font-family="Georgia, serif" font-size="22" font-weight="bold" letter-spacing="2">PDF</text>
+            <line x1="28" y1="108" x2="88" y2="108" stroke="#4a3a2c" stroke-width="1.5"/>
+            <line x1="28" y1="118" x2="88" y2="118" stroke="#4a3a2c" stroke-width="1.5"/>
+            <line x1="28" y1="128" x2="70" y2="128" stroke="#4a3a2c" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h3 class="title">Players Guide</h3>
+          <p class="desc">Official Seven Dooms for Sandpoint Player's Guide. Character creation context, region overview, hooks.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section id="panel-tools" class="panel" role="tabpanel">
+    <div class="grid">
+
+      <a class="card" href="https://plasticmacaroni.github.io/pathbuilder-viewer/" target="_blank" rel="noopener" title="https://plasticmacaroni.github.io/pathbuilder-viewer/">
+        <div class="thumb">
+          <span class="tag">Tool</span>
+          <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Fpathbuilder-viewer%2F?w=900&h=560" alt="">
+        </div>
+        <div class="body">
+          <h3 class="title">Pathbuilder Viewer</h3>
+          <p class="desc">Import Pathbuilder JSON exports to compare party stats side-by-side. Highlights highest values, surfaces composition warnings and party tips.</p>
+        </div>
+      </a>
+
+      <a class="card" href="https://plasticmacaroni.github.io/feat-planner/" target="_blank" rel="noopener" title="https://plasticmacaroni.github.io/feat-planner/">
+        <div class="thumb">
+          <span class="tag">Tool</span>
+          <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Ffeat-planner%2F?w=900&h=560" alt="">
+        </div>
+        <div class="body">
+          <h3 class="title">Feat Planner</h3>
+          <p class="desc">Plan feat chains and visualize prerequisite trees for PF2e characters.</p>
+        </div>
+      </a>
+
+      <a class="card" href="https://plasticmacaroni.github.io/alchemical-item-sorter/" target="_blank" rel="noopener" title="https://plasticmacaroni.github.io/alchemical-item-sorter/">
+        <div class="thumb">
+          <span class="tag">Tool</span>
+          <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Falchemical-item-sorter%2F?w=900&h=560" alt="">
+        </div>
+        <div class="body">
+          <h3 class="title">Alchemical Item Sorter</h3>
+          <p class="desc">Sort and track alchemical items for PF2e alchemists.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>
+    PF2e Remastered · ORC-licensed mechanical content by Paizo Inc.
+  </footer>
+
+</div>
+
+<script>
+  // Tabs
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.target;
+      tabs.forEach(t => {
+        const active = t === tab;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active);
+      });
+      panels.forEach(p => p.classList.toggle('active', p.id === target));
+      // Trigger any unloaded screenshots in the now-visible panel
+      loadVisible();
+    });
+  });
+
+  // Lazy-load screenshots (mshots may take a few seconds to generate first time;
+  // we retry on error with a backoff to give the service time to render).
+  function loadVisible() {
+    document.querySelectorAll('.panel.active img[data-src]').forEach(img => {
+      if (img.dataset.loading) return;
+      img.dataset.loading = '1';
+      attemptLoad(img, img.dataset.src, 0);
+    });
+  }
+  function attemptLoad(img, src, tries) {
+    const probe = new Image();
+    probe.onload = () => {
+      // mshots returns a tiny placeholder GIF (~250 bytes, 400x300) while generating.
+      // If image dimensions look like the placeholder, retry.
+      if (probe.naturalWidth < 500 && tries < 6) {
+        setTimeout(() => attemptLoad(img, src, tries + 1), 1500 + tries * 1000);
+        return;
+      }
+      img.src = src;
+      img.classList.add('loaded');
+      img.removeAttribute('data-src');
+    };
+    probe.onerror = () => {
+      if (tries < 4) {
+        setTimeout(() => attemptLoad(img, src, tries + 1), 1500 + tries * 1000);
+      }
+    };
+    probe.src = src + (tries ? `&_=${Date.now()}` : '');
+  }
+  loadVisible();
+</script>
+
+</body>
+</html>
