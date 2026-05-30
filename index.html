@@ -110,18 +110,45 @@
 
   .panel { display: none; animation: fade 0.25s ease; }
   .panel.active { display: block; }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin: 3rem 0 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: bold;
+  }
+  .section-label::before,
+  .section-label::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--border);
+  }
   @keyframes fade {
     from { opacity: 0; transform: translateY(4px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* Flex layout (not grid) so a lone orphan card on the last row centers
+     naturally via justify-content rather than left-aligning. Full rows of
+     equally-sized cards look identical because the leftover space is zero. */
   .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1.5rem;
+    justify-content: center;
   }
-  .grid.featured {
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  .grid .card {
+    flex: 0 1 320px;
+    max-width: 100%;
+  }
+  .grid.featured .card {
+    flex: 0 1 460px;
   }
 
   .card {
@@ -150,8 +177,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 10;
-    background:
-      linear-gradient(135deg, #3a2c20 0%, #1f1610 100%);
+    background: linear-gradient(135deg, #3a2c20 0%, #1f1610 100%);
     overflow: hidden;
     border-bottom: 1px solid var(--border);
   }
@@ -172,7 +198,7 @@
     background: linear-gradient(180deg, transparent 55%, rgba(15,11,8,0.55) 100%);
     pointer-events: none;
   }
-  .thumb.pdf {
+  .thumb.placeholder {
     display: grid;
     place-items: center;
     background:
@@ -213,6 +239,101 @@
     backdrop-filter: blur(4px);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-weight: bold;
+  }
+
+  /* Viewer modal */
+  dialog.viewer {
+    width: min(96vw, 1400px);
+    height: min(94vh, 900px);
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--text);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    overflow: hidden;
+  }
+  dialog.viewer::backdrop {
+    background: rgba(8,5,3,0.78);
+    backdrop-filter: blur(3px);
+  }
+  .viewer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .viewer-head h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--heading);
+    letter-spacing: 0.04em;
+  }
+  .viewer-actions { display: flex; gap: 0.5rem; align-items: center; }
+  .viewer-actions a, .viewer-actions button {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.35rem 0.75rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .viewer-actions a:hover, .viewer-actions button:hover {
+    color: var(--accent-hover);
+    border-color: var(--accent);
+  }
+  .viewer-body {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 56px);
+    background: #111;
+  }
+  .viewer-body iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .viewer-body #pptx-target {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 1rem;
+    background: #1a1410;
+  }
+  /* PPTXjs renders slides with inline white backgrounds — tone the chrome down */
+  .viewer-body .pptx-wrapper { margin: 0 auto; }
+  .viewer-fallback {
+    padding: 2rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.7;
+  }
+  .viewer-fallback code {
+    color: var(--accent);
+    background: var(--bg);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  .viewer-fallback a { color: var(--accent); }
+  .viewer-loading {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    font-style: italic;
+    pointer-events: none;
+    z-index: 1;
   }
 
   footer {
@@ -257,10 +378,9 @@
   <section id="panel-info" class="panel active" role="tabpanel">
     <div class="grid featured">
 
-      <a class="card primary" href="https://plasticmacaroni.github.io/guide-to-sandpoint/" target="_blank" rel="noopener" title="https://plasticmacaroni.github.io/guide-to-sandpoint/">
+      <a class="card primary" href="sandpoint-guide.html" target="_blank" rel="noopener" title="sandpoint-guide.html">
         <div class="thumb">
-          <span class="tag">Guide</span>
-          <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Fguide-to-sandpoint%2F?w=900&h=560" alt="">
+          <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Fguide-to-sandpoint%2Fsandpoint-guide.html?w=900&h=560" alt="">
         </div>
         <div class="body">
           <h3 class="title">Sandpoint Quick Reference Guide</h3>
@@ -268,22 +388,31 @@
         </div>
       </a>
 
-      <a class="card primary" href="https://plasticmacaroni.github.io/guide-to-sandpoint/SevenDoomsforSandpoint_PlayersGuide.pdf" target="_blank" rel="noopener" title="SevenDoomsforSandpoint_PlayersGuide.pdf">
-        <div class="thumb pdf" aria-hidden="true">
+      <a class="card primary" href="SevenDoomsforSandpoint_PlayersGuide.pdf" target="_blank" rel="noopener" data-viewer="pdf" data-title="Players Guide" title="SevenDoomsforSandpoint_PlayersGuide.pdf">
+        <div class="thumb">
           <span class="tag">PDF</span>
-          <svg width="120" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 8 H82 L100 26 V140 C100 142 98 144 96 144 H20 C18 144 16 142 16 140 V12 C16 10 18 8 20 8 Z"
-                  fill="#2f2319" stroke="#c9a96e" stroke-width="2"/>
-            <path d="M82 8 V26 H100" stroke="#c9a96e" stroke-width="2" fill="none"/>
-            <text x="58" y="92" text-anchor="middle" fill="#c9a96e" font-family="Georgia, serif" font-size="22" font-weight="bold" letter-spacing="2">PDF</text>
-            <line x1="28" y1="108" x2="88" y2="108" stroke="#4a3a2c" stroke-width="1.5"/>
-            <line x1="28" y1="118" x2="88" y2="118" stroke="#4a3a2c" stroke-width="1.5"/>
-            <line x1="28" y1="128" x2="70" y2="128" stroke="#4a3a2c" stroke-width="1.5"/>
-          </svg>
+          <img src="thumb-players-guide.jpg" alt="" loading="lazy" onload="this.classList.add('loaded')">
         </div>
         <div class="body">
           <h3 class="title">Players Guide</h3>
           <p class="desc">Official Seven Dooms for Sandpoint Player's Guide. Character creation context, region overview, hooks.</p>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="section-label">Resources</div>
+
+    <div class="grid">
+
+      <a class="card" href="SevenDooms_Session00.pptx" target="_blank" rel="noopener" data-viewer="pptx" data-title="Session 00 — Briefing" title="SevenDooms_Session00.pptx">
+        <div class="thumb">
+          <span class="tag">Slides</span>
+          <img src="thumb-session-00.png" alt="" loading="lazy" onload="this.classList.add('loaded')">
+        </div>
+        <div class="body">
+          <h3 class="title">Session 00 — Briefing</h3>
+          <p class="desc">Kickoff slides: campaign tone, table expectations, character creation framework, and the road to Sandpoint.</p>
         </div>
       </a>
 
@@ -295,7 +424,6 @@
 
       <a class="card" href="https://plasticmacaroni.github.io/pathbuilder-viewer/" target="_blank" rel="noopener" title="https://plasticmacaroni.github.io/pathbuilder-viewer/">
         <div class="thumb">
-          <span class="tag">Tool</span>
           <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Fpathbuilder-viewer%2F?w=900&h=560" alt="">
         </div>
         <div class="body">
@@ -306,7 +434,6 @@
 
       <a class="card" href="https://plasticmacaroni.github.io/feat-planner/" target="_blank" rel="noopener" title="https://plasticmacaroni.github.io/feat-planner/">
         <div class="thumb">
-          <span class="tag">Tool</span>
           <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Ffeat-planner%2F?w=900&h=560" alt="">
         </div>
         <div class="body">
@@ -317,7 +444,6 @@
 
       <a class="card" href="https://plasticmacaroni.github.io/alchemical-item-sorter/" target="_blank" rel="noopener" title="https://plasticmacaroni.github.io/alchemical-item-sorter/">
         <div class="thumb">
-          <span class="tag">Tool</span>
           <img data-src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fplasticmacaroni.github.io%2Falchemical-item-sorter%2F?w=900&h=560" alt="">
         </div>
         <div class="body">
@@ -335,8 +461,21 @@
 
 </div>
 
+<!-- PPTX / document viewer modal -->
+<dialog id="viewer" class="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-head">
+    <h2 id="viewer-title">Document</h2>
+    <div class="viewer-actions">
+      <a id="viewer-download" href="#" download>Download</a>
+      <a id="viewer-open" href="#" target="_blank" rel="noopener">Open in new tab</a>
+      <button type="button" id="viewer-close" aria-label="Close">Close ✕</button>
+    </div>
+  </div>
+  <div class="viewer-body" id="viewer-body"></div>
+</dialog>
+
 <script>
-  // Tabs
+  // ---- Tabs ----
   const tabs = document.querySelectorAll('.tab');
   const panels = document.querySelectorAll('.panel');
   tabs.forEach(tab => {
@@ -348,13 +487,11 @@
         t.setAttribute('aria-selected', active);
       });
       panels.forEach(p => p.classList.toggle('active', p.id === target));
-      // Trigger any unloaded screenshots in the now-visible panel
       loadVisible();
     });
   });
 
-  // Lazy-load screenshots (mshots may take a few seconds to generate first time;
-  // we retry on error with a backoff to give the service time to render).
+  // ---- Lazy screenshot loader (mshots returns placeholder until ready; retry) ----
   function loadVisible() {
     document.querySelectorAll('.panel.active img[data-src]').forEach(img => {
       if (img.dataset.loading) return;
@@ -365,8 +502,6 @@
   function attemptLoad(img, src, tries) {
     const probe = new Image();
     probe.onload = () => {
-      // mshots returns a tiny placeholder GIF (~250 bytes, 400x300) while generating.
-      // If image dimensions look like the placeholder, retry.
       if (probe.naturalWidth < 500 && tries < 6) {
         setTimeout(() => attemptLoad(img, src, tries + 1), 1500 + tries * 1000);
         return;
@@ -376,13 +511,128 @@
       img.removeAttribute('data-src');
     };
     probe.onerror = () => {
-      if (tries < 4) {
-        setTimeout(() => attemptLoad(img, src, tries + 1), 1500 + tries * 1000);
-      }
+      if (tries < 4) setTimeout(() => attemptLoad(img, src, tries + 1), 1500 + tries * 1000);
     };
     probe.src = src + (tries ? `&_=${Date.now()}` : '');
   }
   loadVisible();
+
+  // ---- PPTX viewer (PPTXjs — meshesha/PPTXjs, MIT, pure client-side) ----
+  const dlg = document.getElementById('viewer');
+  const dlgTitle = document.getElementById('viewer-title');
+  const dlgBody = document.getElementById('viewer-body');
+  const dlgDownload = document.getElementById('viewer-download');
+  const dlgOpen = document.getElementById('viewer-open');
+  document.getElementById('viewer-close').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+
+  document.querySelectorAll('a.card[data-viewer]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+      e.preventDefault();
+      const kind = card.dataset.viewer;
+      const href = card.getAttribute('href');
+      const title = card.dataset.title || 'Document';
+      if (kind === 'pdf') openPdf(href, title);
+      else if (kind === 'pptx') openPptx(href, title);
+    });
+  });
+
+  function openPdf(relPath, title) {
+    dlgTitle.textContent = title;
+    dlgDownload.href = relPath;
+    dlgDownload.setAttribute('download', relPath.split('/').pop());
+    dlgOpen.href = relPath;
+    // Browsers render PDFs inline via their built-in viewer; no library needed.
+    // #toolbar=1 keeps Chrome/Firefox controls visible.
+    dlgBody.innerHTML = `<iframe src="${relPath}#view=FitH" title="${title}"></iframe>`;
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
+  }
+
+  // Lazy-load PPTXjs and its deps from jsDelivr only when first opened.
+  // Scripts must load sequentially (jQuery → jszip → filereader → d3 → nv.d3 → pptxjs → divs2slides).
+  let pptxjsReady = null;
+  function loadPptxjs() {
+    if (pptxjsReady) return pptxjsReady;
+    const base = 'https://cdn.jsdelivr.net/gh/meshesha/PPTXjs@master';
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = base + '/css/pptxjs.css';
+    document.head.appendChild(css);
+    const order = [
+      '/js/jquery-1.11.3.min.js',
+      '/js/jszip.min.js',
+      '/js/filereader.js',
+      '/js/d3.min.js',
+      '/js/nv.d3.min.js',
+      '/js/pptxjs.js',
+      '/js/divs2slides.js',
+    ];
+    pptxjsReady = order.reduce(
+      (p, path) => p.then(() => loadScript(base + path)),
+      Promise.resolve()
+    );
+    return pptxjsReady;
+  }
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = () => reject(new Error('Failed: ' + src));
+      document.head.appendChild(s);
+    });
+  }
+
+  function openPptx(relPath, title) {
+    dlgTitle.textContent = title;
+    dlgDownload.href = relPath;
+    dlgDownload.setAttribute('download', relPath.split('/').pop());
+    dlgOpen.href = relPath;
+    dlgBody.innerHTML = '<div class="viewer-loading">Loading slide renderer…</div>';
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open','');
+
+    // PPTXjs fetches the .pptx via XHR, which is blocked under file:// in most browsers.
+    if (location.protocol === 'file:') {
+      dlgBody.innerHTML = `
+        <div class="viewer-fallback">
+          <p><strong>In-browser rendering needs an HTTP server (browsers block <code>file://</code> XHR).</strong></p>
+          <p>Run <code>python3 -m http.server</code> in the repo and open <code>http://localhost:8000</code>,
+          or just deploy — GitHub Pages works out of the box.</p>
+          <p><a href="${relPath}" download>Download the file</a> · <a href="${relPath}" target="_blank">Open directly</a></p>
+        </div>`;
+      return;
+    }
+
+    loadPptxjs()
+      .then(() => {
+        dlgBody.innerHTML = '<div id="pptx-target"></div><div class="viewer-loading">Rendering slides…</div>';
+        const $target = window.jQuery('#pptx-target');
+        $target.pptxToHtml({
+          pptxFileUrl: relPath,
+          slidesScale: 'fit',
+          slideMode: true,
+          keyBoardShortCut: true,
+        });
+        // Strip the "Loading…" overlay once PPTXjs writes slide content.
+        const obs = new MutationObserver(() => {
+          if ($target.find('.slide').length) {
+            const overlay = dlgBody.querySelector('.viewer-loading');
+            if (overlay) overlay.remove();
+            obs.disconnect();
+          }
+        });
+        obs.observe($target[0], { childList: true, subtree: true });
+      })
+      .catch(err => {
+        console.error(err);
+        dlgBody.innerHTML = `
+          <div class="viewer-fallback">
+            <p>Couldn't load the PPTXjs renderer from jsDelivr.</p>
+            <p><a href="${relPath}" download>Download the slides</a> instead.</p>
+          </div>`;
+      });
+  }
 </script>
 
 </body>
