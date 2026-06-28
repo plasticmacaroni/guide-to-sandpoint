@@ -6,18 +6,18 @@
 <title>Seven Dooms for Sandpoint — Campaign Briefing</title>
 <style>
   :root{
-    --ink:#2b211a;
-    --ink-soft:#5c4a3a;
-    --parch:#f4e8d2;
-    --parch-2:#ece0c6;
-    --card:#fbf4e4;
-    --rule:#c9a86a;
-    --rule-soft:#e0caa0;
-    --accent:#8b2e1f;       /* deep ember red */
-    --accent-2:#b5481f;     /* lighter ember */
-    --gold:#a9842f;
-    --green:#3f5d3a;
-    --shadow:rgba(60,40,20,.18);
+    --ink:#ece2cb;          /* ~87% warm off-white (not pure white) */
+    --ink-soft:#bdb191;
+    --parch:#211c15;
+    --parch-2:#2a241b;
+    --card:#272219;         /* elevated surface (lighter than bg) */
+    --rule:#7a6634;
+    --rule-soft:#3f3425;
+    --accent:#e89066;       /* softened ember — desaturated for dark bg */
+    --accent-2:#f1a884;
+    --gold:#cfa44a;
+    --green:#3f5d3a;        /* kept dark: used as badge/tag backgrounds */
+    --shadow:rgba(0,0,0,.5);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -178,17 +178,84 @@
 
   footer{padding:26px 56px; color:var(--ink-soft); font-size:.85rem; text-align:center;}
 
-  /* ===== Glossary tooltips ===== */
-  .term{border-bottom:1.5px dotted var(--gold); cursor:help; transition:background .12s; border-radius:2px;}
-  .term:hover{background:rgba(169,132,47,.22);}
-  .term-person{border-bottom-color:#a9842f;}
-  .term-place{border-bottom-color:#2f6f6a;}
-  .term-concept{border-bottom-color:#8b2e1f;}
-  .term-faction{border-bottom-color:#8a3c75;}
-  .term-family{border-bottom-color:#9a6326;}
-  .term-deity{border-bottom-color:#2d6a9f;}
-  .term-people{border-bottom-color:#4a7a3a;}
-  .term-how{border-bottom-color:var(--gold);}
+  /* ===== Glossary terms (color-coded highlight + underline) ===== */
+  .term{
+    text-decoration: underline;
+    text-decoration-color: var(--tc, var(--gold));
+    -webkit-text-decoration-color: var(--tc, var(--gold));
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2.5px;
+    cursor: pointer;
+    transition: filter .12s;
+  }
+  .term:hover{ filter: brightness(1.18); text-decoration-thickness: 2.5px; }
+  .term-person {--tc:#d6ad55;}
+  .term-place  {--tc:#4aa89d;}
+  .term-concept{--tc:#df7058;}
+  .term-faction{--tc:#c27ab0;}
+  .term-family {--tc:#d4924f;}
+  .term-deity  {--tc:#5fa4d8;}
+  .term-people {--tc:#82b968;}
+  .term-how    {--tc:#d2ab52;}
+  .lead-in{color:var(--accent); font-weight:700;}
+
+  /* ===== Search ===== */
+  .searchbar{position:sticky; top:0; z-index:60;
+    background:linear-gradient(180deg,#efe2c6,#e7d7b6);
+    border-bottom:2px solid var(--gold); padding:9px 56px;
+    box-shadow:0 3px 12px var(--shadow);}
+  .searchwrap{position:relative; max-width:580px;}
+  #search{width:100%; font-family:inherit; font-size:1rem; color:var(--ink);
+    padding:9px 16px 9px 40px; border:1.5px solid var(--rule); border-radius:24px;
+    background:#fffdf7; outline:none; transition:border-color .15s, box-shadow .15s;}
+  #search:focus{border-color:var(--accent-2); box-shadow:0 0 0 3px rgba(181,72,31,.18);}
+  .searchwrap::before{content:""; position:absolute; left:14px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px; opacity:.55; pointer-events:none;
+    background:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><line x1='21' y1='21' x2='16.5' y2='16.5'/></svg>");}
+  .results{position:absolute; top:calc(100% + 6px); left:0; width:100%;
+    max-height:62vh; overflow:auto; background:var(--card);
+    border:1px solid var(--rule); border-radius:10px;
+    box-shadow:0 14px 34px rgba(60,40,20,.30); display:none; z-index:70;}
+  .results.show{display:block;}
+  .results .row{display:flex; align-items:center; gap:11px; padding:8px 14px;
+    cursor:pointer; border-bottom:1px solid var(--rule-soft);}
+  .results .row:last-child{border-bottom:none;}
+  .results .row:hover, .results .row.active{background:rgba(169,132,47,.18);}
+  .results .dot{width:11px; height:11px; border-radius:50%; flex:0 0 auto; box-shadow:0 0 0 1px rgba(0,0,0,.15);}
+  .results .txt{min-width:0; flex:1;}
+  .results .lbl{font-weight:700; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .results .sub{font-size:.8rem; color:var(--ink-soft); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .results .rcat{flex:0 0 auto; font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em;}
+  .results .empty{padding:14px; color:var(--ink-soft); font-style:italic;}
+  @media (max-width:900px){ .searchbar{padding:9px 20px;} }
+
+  /* jump-to flash */
+  @keyframes flashring{
+    0%{box-shadow:0 0 0 0 rgba(189,58,35,0);}
+    12%{box-shadow:0 0 0 4px rgba(189,58,35,.55);}
+    100%{box-shadow:0 0 0 0 rgba(189,58,35,0);}
+  }
+  .flash{animation:flashring 1.5s ease; border-radius:5px;}
+  section{scroll-margin-top:72px;}
+
+  /* ===== Dark theme: override hard-coded light spots ===== */
+  body{
+    background:
+      radial-gradient(circle at 22% -5%, #272015, transparent 55%),
+      #1c1813;            /* dark neutral-warm base, not pure black */
+  }
+  section:nth-of-type(even){background:rgba(255,255,255,.025);}
+  h3{color:#8fbf78;}                              /* light green on dark */
+  .card ul.check li::before{color:#8fbf78;}
+  thead th{background:#8a3320;}                    /* deep ember header (bright accent text would glare) */
+  h2.sec .num{background:#8a3320;}
+  .searchbar{background:linear-gradient(180deg,#241c12,#1b150d);}
+  #search{background:#241c13; color:var(--ink);}
+  #search::placeholder{color:#8c7e60;}
+  .searchwrap::before{opacity:.75;
+    background:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9b78f' stroke-width='2.2' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><line x1='21' y1='21' x2='16.5' y2='16.5'/></svg>");}
+  .results{background:#221a11;}
+  .hint{background:transparent; border-bottom:1px solid var(--rule-soft);}
 
   #tooltip{
     position:fixed; z-index:9999; max-width:300px;
@@ -204,8 +271,8 @@
     letter-spacing:.14em; color:var(--rule); margin-bottom:4px; font-weight:700;}
 
   .hint{
-    font-size:.84rem; color:var(--ink-soft);
-    background:rgba(255,255,255,.45); border-bottom:1px solid var(--rule-soft);
+    font-size:.86rem; color:var(--ink);
+    background:transparent; border-bottom:1px solid var(--rule-soft);
     padding:11px 56px; display:flex; flex-wrap:wrap; gap:7px 16px; align-items:center;
   }
   .hint .lg{display:inline-flex; align-items:center; gap:6px; font-size:.84rem; font-weight:600;}
@@ -242,6 +309,11 @@
   </nav>
 
   <main>
+    <div class="searchbar"><div class="searchwrap">
+      <input id="search" type="search" placeholder="Search people, places, lore, locations&hellip;" autocomplete="off" spellcheck="false" aria-label="Search the briefing">
+      <div id="results" class="results" role="listbox"></div>
+    </div></div>
+
     <!-- ===================== HERO ===================== -->
     <header class="hero">
       <div class="kicker">Pathfinder Second Edition · Adventure Path</div>
@@ -250,14 +322,14 @@
     </header>
 
     <div class="hint">
-      <strong style="color:var(--accent)">Hover the underlined terms</strong> for quick explanations &mdash; color-coded by type:
-      <span class="lg"><span class="sw" style="background:#a9842f"></span>People</span>
-      <span class="lg"><span class="sw" style="background:#2f6f6a"></span>Places</span>
-      <span class="lg"><span class="sw" style="background:#8b2e1f"></span>Lore</span>
-      <span class="lg"><span class="sw" style="background:#8a3c75"></span>Factions</span>
-      <span class="lg"><span class="sw" style="background:#9a6326"></span>Families</span>
-      <span class="lg"><span class="sw" style="background:#2d6a9f"></span>Gods</span>
-      <span class="lg"><span class="sw" style="background:#4a7a3a"></span>Peoples</span>
+      <strong style="color:var(--gold)">Hover</strong> the underlined terms for a definition, or <strong style="color:var(--gold)">click</strong> to jump to its entry &mdash; color-coded by type:
+      <span class="lg"><span class="sw" style="background:#d6ad55"></span>People</span>
+      <span class="lg"><span class="sw" style="background:#4aa89d"></span>Places</span>
+      <span class="lg"><span class="sw" style="background:#df7058"></span>Lore</span>
+      <span class="lg"><span class="sw" style="background:#c27ab0"></span>Factions</span>
+      <span class="lg"><span class="sw" style="background:#d4924f"></span>Families</span>
+      <span class="lg"><span class="sw" style="background:#5fa4d8"></span>Gods</span>
+      <span class="lg"><span class="sw" style="background:#82b968"></span>Peoples</span>
     </div>
 
     <!-- ===================== 1. AT A GLANCE ===================== -->
@@ -280,44 +352,68 @@
 
       <div class="timeline">
         <div class="tl">
-          <div class="when">4666 AR — The Founding</div>
+          <div class="when">AR 4666 — Sandpoint Is Founded</div>
           <ul>
-            <li>Founded by the <strong>Sandpoint Mercantile League</strong>: four families — the <strong>Kaijitsus, Valdemars, Scarnettis,</strong> and <strong>Deverins</strong>.</li>
-            <li>They came from Magnimar seeking a sheltered cove — but the site was <strong>already claimed by local Varisians</strong>, who used it as a traditional waypoint.</li>
+            <li>Four noble families — the <strong>Deverins, Kaijitsus, Scarnettis,</strong> and <strong>Valdemars</strong> — pool resources to settle the Lost Coast, forming the <strong>Sandpoint Mercantile League</strong> and dividing the town's commerce among themselves.</li>
+            <li>A natural harbor, fertile land, and nearness to <strong>Magnimar</strong> make it thrive &mdash; but the chosen cove is <strong>already claimed by a local Varisian tribe</strong>.</li>
           </ul>
         </div>
         <div class="tl">
-          <div class="when">The Bloody Beginning &amp; the Compact</div>
+          <div class="when">AR 4666 — The Varisian Conflict &amp; the Compact</div>
           <ul>
-            <li>Cooperation collapsed when <strong>Alamon Scarnetti</strong>, drunk, led kin to <strong>murder the Varisians and frame local goblins</strong>.</li>
-            <li>It backfired — more Scarnettis died than Varisians — and Magnimar's Varisian Council demanded punishment, nearly killing the town in its cradle.</li>
-            <li>Bard <strong>Almah Deverin</strong> brokered peace: she folded <strong>worship of Desna</strong> into the cathedral and granted Varisians a <strong>share of all town profits for 40 years</strong>. This "compact" saved Sandpoint.</li>
+            <li>Negotiations stall, then <strong>Alamon Scarnetti</strong> &mdash; acting without sanction &mdash; leads a <strong>drunken raid</strong> on the Varisian camp, leaving dead on both sides. Magnimar's Varisian Council intervenes.</li>
+            <li>Bard <strong>Almah Deverin</strong> brokers a compromise: the Varisians waive their land claim for <strong>40 years of profit-sharing</strong> (plus worship of <strong>Desna</strong> in the town cathedral). <span class="lead-in">That compact expires AR 4726 &mdash; two years from now</span>, and the Scarnettis are pushing to end it.</li>
           </ul>
         </div>
         <div class="tl">
-          <div class="when">Two Centuries of Growth</div>
+          <div class="when">AR 4702 — The Late Unpleasantness: The Chopper</div>
           <ul>
-            <li>Sandpoint thrived on <strong>lumber and fishing</strong>, becoming largely self-sufficient.</li>
-            <li>The compact was later <strong>extended another 20 years</strong> (60 total) — irritating some citizens.</li>
-            <li><strong>That extension expires in just 2 years</strong>, and the <strong>Scarnettis</strong> are maneuvering to end the "unfair allocation of profits." A live tension at campaign start.</li>
+            <li>Over a single winter a serial killer &mdash; <strong>"The Chopper"</strong> &mdash; leaves a body every few days, each missing hands, feet, eyes, and tongue. <strong>25 victims</strong> in all.</li>
+            <li>Sheriff <strong>Casp Avertin</strong> mortally wounds him in <strong>Chopper's Alley</strong> at the cost of his own life; deputy <strong>Belor Hemlock</strong> finishes the hunt and is named Sheriff.</li>
           </ul>
         </div>
         <div class="tl">
-          <div class="when">The "Late Unpleasantness" — Two Decades of Disaster</div>
+          <div class="when">AR 4702 — The Sandpoint Fire</div>
           <ul>
-            <li><strong>The Chopper murders</strong> — a pattern killer's spree (~20 years ago); victims included a grocer guildmaster and a Two Knight Brewery founder.</li>
-            <li><strong>The Cathedral fire</strong> — the original cathedral burned.</li>
-            <li><strong>Goblin raids</strong> — including the major raid <strong>17 years ago</strong> ("Burnt Offerings").</li>
-            <li><strong>Giant and dragon attacks</strong> on the town.</li>
-            <li><strong>A sinkhole</strong> that opened downtown into an ancient Thassilonian dungeon (destroyed the street north of the garrison).</li>
-            <li><strong>Tsunamis</strong> along the coast, and <strong>regional horrors unleashed by Runelord Alaznist</strong> (the <em>Return of the Runelords</em> events).</li>
+            <li>Months later the <strong>Sandpoint Chapel</strong> burns down; beloved priest <strong>Father Tobyn</strong> dies, and his adopted daughter <strong>Nualia</strong> is presumed dead.</li>
+            <li>Two catastrophes in one year give the era its name &mdash; <em>"The Late Unpleasantness."</em> The chapel is later rebuilt as the grander <strong>Sandpoint Cathedral</strong>.</li>
           </ul>
         </div>
         <div class="tl">
-          <div class="when">17 Years Ago — The Return of Thassilon</div>
+          <div class="when">AR 4707 — The Year of Heroes</div>
           <ul>
-            <li><strong>Runelord Karzoug</strong> woke from millennia of slumber. Word of ancient <strong>Thassilon</strong> spread across the Inner Sea, and adventurers flocked to Varisia to plunder its ruins.</li>
-            <li>Today Thassilon is <strong>"back"</strong>: its runelords are either truly dead or returned to life, and the ruins are ripe — and dangerous — for research. <strong>Alaznist's</strong> recent return nearly ruined the region.</li>
+            <li>Three crises strike in a single year, each turned back by a band of <strong>visiting adventurers</strong> who become local legends (the famous earlier Adventure Paths):</li>
+            <li><span class="lead-in">The Goblin Raid:</span> the <strong>Thistletop</strong> tribe attacks during the <strong>Swallowtail Festival</strong> consecrating the new Cathedral.</li>
+            <li><span class="lead-in">The Skinsaw Murders:</span> ritual killings marked with <strong>Sihedron</strong> stars, traced to a conspiracy in Magnimar.</li>
+            <li><span class="lead-in">The Giant Raid:</span> <strong>Stone Giants</strong> led by a <strong>red dragon</strong> seize citizens in what feels like a deliberate strike. Behind it all: Runelord <strong>Karzoug</strong> and the return of <strong>Thassilon</strong>.</li>
+          </ul>
+        </div>
+        <div class="tl">
+          <div class="when">AR 4712 — The Licktoad Affair &amp; Ameiko's Departure</div>
+          <ul>
+            <li>The <strong>Licktoad</strong> goblins of <strong>Brinestump Marsh</strong> raid with a stolen cache of fireworks; <strong>Ameiko Kaijitsu</strong> and companions end the threat.</li>
+            <li>Soon after, Ameiko sails for <strong>Tian Xia</strong> &mdash; eventually becoming <strong>Empress of Minkai</strong>. She has not returned.</li>
+          </ul>
+        </div>
+        <div class="tl">
+          <div class="when">AR 4713 — The Tsunami &amp; The Pit</div>
+          <ul>
+            <li>A great wave devastates the Lost Coast; Sandpoint rebuilds, as ever.</li>
+            <li>At the same moment, a massive sinkhole tears open the plateau <strong>east of town</strong>, exposing a vast subterranean ruin locals call <strong>The Pit</strong> &mdash; now monster-claimed and strongly off-limits.</li>
+          </ul>
+        </div>
+        <div class="tl">
+          <div class="when">Backdrop — The Return of Thassilon</div>
+          <ul>
+            <li>Runelord <strong>Karzoug</strong>'s awakening (amid the 4707 crises) revealed that ancient <strong>Thassilon</strong> had returned; adventurers flooded Varisia to plunder its ruins.</li>
+            <li>The runelords are now either truly dead or returned to life &mdash; and <strong>Alaznist's</strong> later rampage nearly ruined the whole region.</li>
+          </ul>
+        </div>
+        <div class="tl">
+          <div class="when">AR 4724 — Now</div>
+          <ul>
+            <li>After two decades of murders, fires, raids, giants, tsunamis, and worse, many quietly believe the town is <strong>cursed</strong>.</li>
+            <li>The compact expires in two years, old tensions simmer &mdash; and Sandpoint faces not one doom, but <strong>seven</strong>.</li>
           </ul>
         </div>
       </div>
@@ -381,7 +477,7 @@
           <tr><td><strong>Scarnetti Consortium</strong></td><td>The League's <strong>greatest rival</strong>; the rebuilt Scarnetti holdings. Owns the lumber &amp; grain mills.</td><td>Titus Scarnetti (aristocrat)</td><td>Scarnetti Manor (S48)</td></tr>
           <tr><td><strong>Town Watch</strong></td><td>The town guard, patrolling streets and surrounding roads.</td><td>Sheriff Belor Hemlock + wife Kaye Tesarani</td><td>Garrison (S10)</td></tr>
           <tr><td><strong>Townsfolk</strong></td><td>The common people, represented politically by the mayor.</td><td>Mayor Kendra Deverin</td><td>Town Hall (S11)</td></tr>
-          <tr><td><strong>Sandpoint Cathedral</strong></td><td>The religious institution — and your initial patron.</td><td>Abstalar Zantus (cleric of Desna)</td><td>The Cathedral (S1)</td></tr>
+          <tr><td><strong>Sandpoint Cathedral Clergy</strong></td><td>The cathedral's clergy — the town's religious institution and your initial patron.</td><td>Abstalar Zantus (cleric of Desna)</td><td>The Cathedral (S1)</td></tr>
           <tr><td><strong>Runewatchers</strong></td><td>The <strong>newest</strong> faction — scholars collecting Thassilon lore and watching for new perils from the ancient empire.</td><td>(gathers around Brodert Quink)</td><td>Brodert's House (S8)</td></tr>
           <tr><td><strong>Bunyip Club</strong></td><td>Organized criminals — the closest thing to a <strong>thieves' guild</strong>. Mostly petty crime, but rumored to hold hidden power. Secret hideout in the old <strong>smuggling tunnels</strong> beneath town.</td><td>Jubrayl Vhiski (rogue)</td><td>The Feedbag (S42)</td></tr>
         </tbody>
@@ -535,6 +631,15 @@
           <li><span class="sid">S48</span><span class="lname">Scarnetti Manor</span> <span class="ltype">Manor</span> — Seat of the Scarnetti Consortium. <em>Titus Scarnetti.</em></li>
           <li><span class="sid">S49</span><span class="lname">Kaijitsu Manor</span> <span class="ltype">Manor</span> — Kept ready for Empress Ameiko. <em>Velarie Neserin &amp; Anyaia.</em></li>
           <li><span class="sid">S50</span><span class="lname">Deverin Manor</span> <span class="ltype">Manor</span> — Home of Mayor Kendra Deverin &amp; family.</li>
+        </ul>
+      </div>
+
+      <div class="locgroup">
+        <h3>Beyond the Walls — the Hinterlands</h3>
+        <ul class="loclist">
+          <li><span class="sid" style="background:#8b2e1f">⚠</span><span class="lname">The Pit</span> <span class="ltype">Subterranean ruin</span> — A vast Thassilonian ruin exposed by a sinkhole on the plateau <em>east of town</em> (AR 4713); monster-claimed and strongly off-limits. Looms over the campaign's dangers.</li>
+          <li><span class="sid" style="background:#6d2f5e">▲</span><span class="lname">Thistletop</span> <span class="ltype">Goblin stronghold</span> — Coastal lair of the Thistletop goblins, who raided Sandpoint during the 4707 Swallowtail Festival.</li>
+          <li><span class="sid" style="background:#3f5d3a">≈</span><span class="lname">Brinestump Marsh</span> <span class="ltype">Marshland</span> — Wetlands southeast of town; home of the Licktoad goblin tribe.</li>
         </ul>
       </div>
     </section>
@@ -736,6 +841,18 @@ var GLOSS = {
   "yarning": {c:"concept", d:"A local pastime: friendly tall-tale-telling contests, famously held at the Hagfish."},
   "the compact": {c:"concept", d:"The founding-era deal granting Varisians a share of town profits; its expiration in two years is a live tension."},
   "goblin raids": {c:"concept", d:"Sandpoint has been raided repeatedly by local goblin tribes — most notably 17 years ago."},
+  "The Pit": {c:"concept", d:"A vast subterranean Thassilonian ruin exposed by a sinkhole on the plateau east of town in 4713; now monster-claimed and off-limits — and central to the campaign's perils."},
+  "Swallowtail Festival": {c:"concept", d:"Sandpoint's cherished annual festival; the 4707 celebration consecrating the new Cathedral was struck by the Thistletop goblin raid."},
+  "Skinsaw Murders": {c:"concept", d:"A 4707 string of ritual killings whose victims bore carved Sihedron stars, traced to a conspiracy in Magnimar."},
+  "Sihedron": {c:"concept", d:"The seven-pointed star rune of ancient Thassilon — symbol of the runelords and their seven schools/sins of magic."},
+  "Chopper's Alley": {c:"place", d:"The spot where Sheriff Casp Avertin fell stopping the Chopper in 4702; sealed and burned afterward."},
+  "Thistletop": {c:"place", d:"Coastal goblin stronghold of the Thistletop tribe, who raided Sandpoint in 4707."},
+  "Brinestump Marsh": {c:"place", d:"Marshland southeast of Sandpoint, home of the Licktoad goblin tribe."},
+  "Tian Xia": {c:"place", d:"The distant eastern continent Ameiko Kaijitsu sailed to in 4712 before becoming Empress of Minkai."},
+  "Casp Avertin": {c:"person", d:"The sheriff slain in 4702 mortally wounding the Chopper; his deputy Belor Hemlock succeeded him."},
+  "Father Tobyn": {c:"person", d:"Sandpoint's beloved priest, who perished in the 4702 chapel fire."},
+  "Nualia": {c:"person", d:"Father Tobyn's adopted daughter, presumed dead in the 4702 chapel fire."},
+  "Licktoad": {c:"people", d:"A goblin tribe of Brinestump Marsh that raided Sandpoint in 4712 using a stolen cache of fireworks."},
 
   /* ---------- Places ---------- */
   "Varisia": {c:"place", d:"The wild frontier region of northwestern Avistan where Sandpoint lies, dense with Thassilonian ruins."},
@@ -793,6 +910,7 @@ var GLOSS = {
   "Town Watch": {c:"faction", d:"Sandpoint's town guard, led by Sheriff Belor Hemlock."},
   "Runewatchers": {c:"faction", d:"The newest faction — scholars studying Thassilon and watching for its perils."},
   "Bunyip Club": {c:"faction", d:"Sandpoint's criminal gang — the closest thing to a thieves' guild, hidden in old smuggling tunnels."},
+  "Sandpoint Cathedral Clergy": {c:"faction", d:"The cathedral's clergy as a power bloc — the town's religious institution, led by Abstalar Zantus, and the party's initial patron."},
   "Townsfolk": {c:"faction", d:"The common citizenry as a political bloc, represented by the mayor."},
 
   /* ---------- Deities ---------- */
@@ -869,6 +987,9 @@ var GLOSS = {
 var CATLABEL = {person:"Person", place:"Place", concept:"Lore", faction:"Faction",
   family:"Founding family", deity:"Deity", people:"People", how:"Tip"};
 
+/* first highlighted occurrence of each term, for search jump-to */
+var firstTerm = {};
+
 (function(){
   /* build canonical lookup + ordered alternation (longest first) */
   var keys = Object.keys(GLOSS).sort(function(a,b){return b.length - a.length;});
@@ -912,6 +1033,7 @@ var CATLABEL = {person:"Person", place:"Place", concept:"Lore", faction:"Faction
         span.setAttribute("data-tip", entry.d);
         span.setAttribute("data-cat", CATLABEL[entry.c] || "");
         span.textContent = m[0];
+        if(!firstTerm[key.toLowerCase()]) firstTerm[key.toLowerCase()] = span;
         frag.appendChild(span);
         last = m.index + m[0].length;
       }
@@ -949,6 +1071,161 @@ var CATLABEL = {person:"Person", place:"Place", concept:"Lore", faction:"Faction
     var t = e.target.closest(".term"); if(t) hide();
   });
   window.addEventListener("scroll", hide, true);
+})();
+
+/* ============================================================
+   SEARCH  —  fuzzy lookup across terms, people, places, locations
+   ============================================================ */
+(function(){
+  var COLORS = {person:"#d6ad55", place:"#4aa89d", concept:"#df7058", faction:"#c27ab0",
+    family:"#d4924f", deity:"#5fa4d8", people:"#82b968", rule:"#b3a07a", section:"#e89066"};
+  function catOfSection(id){
+    return {people:"person", families:"family", thassilon:"concept",
+            rules:"rule", homework:"rule"}[id] || "section";
+  }
+
+  /* lookup maps so a term jumps to its card/location, not a random first mention */
+  var cardByTitle = {}, locByName = {};
+  document.querySelectorAll(".card h4").forEach(function(h){
+    var k = h.textContent.replace(/\s+/g," ").trim().toLowerCase();
+    if(k && !cardByTitle[k]) cardByTitle[k] = h.closest(".card");
+  });
+  document.querySelectorAll("ul.loclist > li").forEach(function(li){
+    var nm = li.querySelector(".lname"); if(!nm) return;
+    var k = nm.textContent.replace(/\s+/g," ").trim().toLowerCase();
+    if(k && !locByName[k]) locByName[k] = li;
+  });
+  function bestTarget(label){
+    var k = label.replace(/\s+/g," ").trim().toLowerCase();
+    return cardByTitle[k] || locByName[k] || firstTerm[k] || null;
+  }
+
+  var index = [], seen = {};
+  function add(label, cat, sub, target){
+    if(!label) return;
+    label = label.replace(/\s+/g," ").trim();
+    var k = label.toLowerCase();
+    if(!k || seen[k]) return;
+    seen[k] = 1;
+    index.push({label:label, cat:cat, sub:(sub||"").replace(/\s+/g," ").trim(), target:target||null});
+  }
+
+  /* 1) glossary terms — jump to their card/location when one exists */
+  Object.keys(GLOSS).forEach(function(key){
+    var e = GLOSS[key];
+    add(key, e.c, e.d, bestTarget(key));
+  });
+  /* 2) every gazetteer location (S-id + type) */
+  document.querySelectorAll("ul.loclist > li").forEach(function(li){
+    var nm = li.querySelector(".lname"); if(!nm) return;
+    var sid = li.querySelector(".sid"), ty = li.querySelector(".ltype");
+    var sub = [sid?sid.textContent:"", ty?ty.textContent:""].filter(Boolean).join(" · ");
+    add(nm.textContent, "place", sub, li);
+  });
+  /* 3) card titles (NPCs, rules, lore, families) */
+  document.querySelectorAll(".card h4").forEach(function(h){
+    var card = h.closest(".card"), sec = h.closest("section"),
+        role = card ? card.querySelector(".role") : null;
+    add(h.textContent, catOfSection(sec ? sec.id : ""), role?role.textContent:"", card);
+  });
+  /* 4) section headings (navigation) */
+  document.querySelectorAll("h2.sec").forEach(function(h){
+    add(h.textContent.replace(/^\s*\d+\s*/,""), "section", "Jump to section", h.closest("section"));
+  });
+
+  function fuzzy(q, s){
+    s = s.toLowerCase();
+    var qi=0, score=0, streak=0, start=-1;
+    for(var i=0; i<s.length && qi<q.length; i++){
+      if(s[i] === q[qi]){ if(start<0) start=i; streak++; score += 1+streak; qi++; }
+      else streak = 0;
+    }
+    if(qi < q.length) return -1;
+    score += Math.max(0, 8-start);
+    var idx = s.indexOf(q);
+    if(idx === 0) score += 18; else if(idx > -1) score += 9;
+    return score;
+  }
+  function scoreItem(it, q){
+    var a = fuzzy(q, it.label), s = -1;
+    if(a >= 0) s = a + 12;
+    if(it.sub){ var b = fuzzy(q, it.sub); if(b >= 0) s = Math.max(s, b*0.5); }
+    return s;
+  }
+
+  var input = document.getElementById("search");
+  var box = document.getElementById("results");
+  var current = [], active = -1;
+  function esc(t){ return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function cap(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
+
+  function render(list){
+    current = list; active = -1;
+    if(!list.length){
+      box.innerHTML = '<div class="empty">No matches.</div>';
+      box.classList.add("show"); return;
+    }
+    box.innerHTML = list.map(function(it, i){
+      var c = COLORS[it.cat] || "#7a6a4a";
+      var sub = it.sub ? '<div class="sub">'+esc(it.sub)+'</div>' : '';
+      return '<div class="row" data-i="'+i+'" role="option">'+
+        '<span class="dot" style="background:'+c+'"></span>'+
+        '<div class="txt"><div class="lbl">'+esc(it.label)+'</div>'+sub+'</div>'+
+        '<span class="rcat" style="color:'+c+'">'+(CATLABEL[it.cat]||cap(it.cat))+'</span>'+
+      '</div>';
+    }).join("");
+    box.classList.add("show");
+  }
+  function go(it){
+    box.classList.remove("show");
+    if(!it || !it.target) return;
+    var t = it.target;
+    t.scrollIntoView({behavior:"smooth", block: t.tagName==="SECTION" ? "start" : "center"});
+    t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash");
+  }
+  function mark(){
+    [].forEach.call(box.children, function(r, i){ if(r.classList) r.classList.toggle("active", i===active); });
+    if(active>=0 && box.children[active]) box.children[active].scrollIntoView({block:"nearest"});
+  }
+
+  input.addEventListener("input", function(){
+    var q = input.value.toLowerCase().trim();
+    if(!q){ box.classList.remove("show"); box.innerHTML=""; return; }
+    var scored = [];
+    for(var i=0; i<index.length; i++){
+      var s = scoreItem(index[i], q);
+      if(s > 0) scored.push([s, index[i]]);
+    }
+    scored.sort(function(a,b){ return b[0]-a[0]; });
+    render(scored.slice(0, 12).map(function(x){ return x[1]; }));
+  });
+  input.addEventListener("keydown", function(e){
+    if(!box.classList.contains("show") || !current.length) return;
+    if(e.key === "ArrowDown"){ active = Math.min(active+1, current.length-1); mark(); e.preventDefault(); }
+    else if(e.key === "ArrowUp"){ active = Math.max(active-1, 0); mark(); e.preventDefault(); }
+    else if(e.key === "Enter"){ go(current[active>=0 ? active : 0]); e.preventDefault(); }
+    else if(e.key === "Escape"){ box.classList.remove("show"); input.blur(); }
+  });
+  input.addEventListener("focus", function(){
+    if(input.value.trim() && box.innerHTML) box.classList.add("show");
+  });
+  box.addEventListener("mousedown", function(e){
+    var row = e.target.closest(".row"); if(!row) return;
+    e.preventDefault(); go(current[+row.getAttribute("data-i")]);
+  });
+  document.addEventListener("click", function(e){
+    if(!e.target.closest(".searchwrap")) box.classList.remove("show");
+  });
+
+  /* inline underlined terms → jump to their reference card/location */
+  document.body.addEventListener("click", function(e){
+    var t = e.target.closest(".term"); if(!t) return;
+    var tgt = bestTarget(t.textContent);
+    if(tgt && tgt !== t && !(tgt.contains && tgt.contains(t))){
+      tgt.scrollIntoView({behavior:"smooth", block: tgt.tagName==="SECTION" ? "start" : "center"});
+      tgt.classList.remove("flash"); void tgt.offsetWidth; tgt.classList.add("flash");
+    }
+  });
 })();
 </script>
 </body>
