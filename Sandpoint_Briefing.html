@@ -128,6 +128,24 @@
   .card ul.check li::before{content:"\2714"; color:var(--green); font-size:.85em; top:.05em;}
   .card p + ul{margin-top:.35em;}
   .card .lead-in{color:var(--accent); font-weight:700;}
+  .entity-icon{
+    width:46px; height:46px; border-radius:50%;
+    float:right; margin:0 0 8px 12px;
+    border:1px solid rgba(207,164,74,.72);
+    box-shadow:0 3px 10px rgba(0,0,0,.38), inset 0 0 0 1px rgba(255,230,180,.12);
+    background:#17120d;
+    display:block; overflow:hidden; color:#d7ab55;
+  }
+  .entity-icon svg{
+    width:100%; height:100%; display:block;
+  }
+  tr .entity-icon{
+    width:34px; height:34px; float:none; margin:0 9px 0 0;
+    vertical-align:middle; display:inline-block;
+  }
+  ul.loclist li .entity-icon{
+    width:34px; height:34px; margin:0 0 6px 10px;
+  }
   .callout ul{list-style:none; margin:.6em 0 .2em; padding:0;}
   .callout ul li{position:relative; padding-left:1.15em; margin:.4em 0; line-height:1.5;}
   .callout ul li::before{content:"\203A"; position:absolute; left:.1em; color:var(--accent-2); font-weight:700;}
@@ -424,22 +442,22 @@
       <h2 class="sec"><span class="num">3</span> Ancient Thassilon &amp; the Runelords</h2>
       <p class="lead">The deep backdrop. Understanding this makes the whole campaign click.</p>
       <div class="grid">
-        <div class="card">
+        <div class="card" data-icon="thassilon-rune">
           <div class="role">The Empire</div>
           <h4>Thassilon</h4>
           <p>An ancient magical empire that ruled this land before recorded history — before the cataclysm of <strong>Earthfall</strong> — governed by arcane tyrants called <strong>runelords</strong> (e.g. <strong>Karzoug</strong>, <strong>Alaznist</strong>).</p>
         </div>
-        <div class="card">
+        <div class="card" data-icon="alchemist">
           <div class="role">Its Dark Craft</div>
           <h4>Fleshwarping</h4>
           <p>Thassilon's runelords warped flesh to create monstrous servants and guardians. Its most widespread modern legacy is the <strong>sinspawn</strong>; rarer fleshwarps survive on the Lost Coast too.</p>
         </div>
-        <div class="card">
+        <div class="card" data-icon="sandpoint-town">
           <div class="role">Where It Survives</div>
           <h4>Ruins of the Empire</h4>
           <p>The <strong>Old Light</strong> (a collapsed Thassilonian tower in Sandpoint, NW near Junk Beach), Magnimar's monoliths, Riddleport's rune-arch, <strong>Hollow Mountain</strong>, the <strong>Lady's Light</strong>, and <strong>Guiltspur</strong>.</p>
         </div>
-        <div class="card">
+        <div class="card" data-icon="runewatchers">
           <div class="role">Why It Matters</div>
           <h4>The Thassilonian Tongue</h4>
           <p>The <strong>Thassilonian language</strong> is genuinely useful here. Magic, ancient ruins, and runelord lore recur throughout — and inspired the town's new <strong>Runewatchers</strong> faction.</p>
@@ -473,13 +491,13 @@
       <table>
         <thead><tr><th>Faction</th><th>What it is</th><th>Face</th><th>Base</th></tr></thead>
         <tbody>
-          <tr><td><strong>Sandpoint Mercantile League</strong></td><td>The <strong>oldest</strong> faction — the original founding-family consortium; most of the town's merchants &amp; innkeepers.</td><td>Jasper Korvaski (paladin)</td><td>Mercantile League (S40)</td></tr>
-          <tr><td><strong>Scarnetti Consortium</strong></td><td>The League's <strong>greatest rival</strong>; the rebuilt Scarnetti holdings. Owns the lumber &amp; grain mills.</td><td>Titus Scarnetti (aristocrat)</td><td>Scarnetti Manor (S48)</td></tr>
-          <tr><td><strong>Town Watch</strong></td><td>The town guard, patrolling streets and surrounding roads.</td><td>Sheriff Belor Hemlock + wife Kaye Tesarani</td><td>Garrison (S10)</td></tr>
-          <tr><td><strong>Townsfolk</strong></td><td>The common people, represented politically by the mayor.</td><td>Mayor Kendra Deverin</td><td>Town Hall (S11)</td></tr>
-          <tr><td><strong>Sandpoint Cathedral Clergy</strong></td><td>The cathedral's clergy — the town's religious institution and your initial patron.</td><td>Abstalar Zantus (cleric of Desna)</td><td>The Cathedral (S1)</td></tr>
-          <tr><td><strong>Runewatchers</strong></td><td>The <strong>newest</strong> faction — scholars collecting Thassilon lore and watching for new perils from the ancient empire.</td><td>(gathers around Brodert Quink)</td><td>Brodert's House (S8)</td></tr>
-          <tr><td><strong>Bunyip Club</strong></td><td>Organized criminals — the closest thing to a <strong>thieves' guild</strong>. Mostly petty crime, but rumored to hold hidden power. Secret hideout in the old <strong>smuggling tunnels</strong> beneath town.</td><td>Jubrayl Vhiski (rogue)</td><td>The Feedbag (S42)</td></tr>
+          <tr data-icon="mercantile-league"><td><strong>Sandpoint Mercantile League</strong></td><td>The <strong>oldest</strong> faction — the original founding-family consortium; most of the town's merchants &amp; innkeepers.</td><td>Jasper Korvaski (paladin)</td><td>Mercantile League (S40)</td></tr>
+          <tr data-icon="scarnetti-consortium"><td><strong>Scarnetti Consortium</strong></td><td>The League's <strong>greatest rival</strong>; the rebuilt Scarnetti holdings. Owns the lumber &amp; grain mills.</td><td>Titus Scarnetti (aristocrat)</td><td>Scarnetti Manor (S48)</td></tr>
+          <tr data-icon="town-watch"><td><strong>Town Watch</strong></td><td>The town guard, patrolling streets and surrounding roads.</td><td>Sheriff Belor Hemlock + wife Kaye Tesarani</td><td>Garrison (S10)</td></tr>
+          <tr data-icon="town-hall"><td><strong>Townsfolk</strong></td><td>The common people, represented politically by the mayor.</td><td>Mayor Kendra Deverin</td><td>Town Hall (S11)</td></tr>
+          <tr data-icon="cathedral"><td><strong>Sandpoint Cathedral Clergy</strong></td><td>The cathedral's clergy — the town's religious institution and your initial patron.</td><td>Abstalar Zantus (cleric of Desna)</td><td>The Cathedral (S1)</td></tr>
+          <tr data-icon="runewatchers"><td><strong>Runewatchers</strong></td><td>The <strong>newest</strong> faction — scholars collecting Thassilon lore and watching for new perils from the ancient empire.</td><td>(gathers around Brodert Quink)</td><td>Brodert's House (S8)</td></tr>
+          <tr data-icon="bunyip-club"><td><strong>Bunyip Club</strong></td><td>Organized criminals — the closest thing to a <strong>thieves' guild</strong>. Mostly petty crime, but rumored to hold hidden power. Secret hideout in the old <strong>smuggling tunnels</strong> beneath town.</td><td>Jubrayl Vhiski (rogue)</td><td>The Feedbag (S42)</td></tr>
         </tbody>
       </table>
     </section>
@@ -488,10 +506,10 @@
     <section id="families">
       <h2 class="sec"><span class="num">6</span> The Founding Families Today</h2>
       <div class="grid">
-        <div class="card"><div class="role">Ascendant</div><h4>Deverin</h4><p><strong>Kendra Deverin</strong> is the current mayor, championing the spread of power across the seven factions.</p></div>
-        <div class="card"><div class="role">Departed to glory</div><h4>Kaijitsu</h4><p>Down to one famous member — <strong>Ameiko Kaijitsu</strong>, former Rusty Dragon owner, now <strong>Empress of distant Minkai</strong>. Her manor (S49) waits ready.</p></div>
-        <div class="card"><div class="role">Clawing back</div><h4>Scarnetti</h4><p>Fallen from grace but rebuilding via the <strong>Scarnetti Consortium</strong> under bitter <strong>Titus Scarnetti</strong> (rumored Bunyip Club ties).</p></div>
-        <div class="card"><div class="role">Fading</div><h4>Valdemar</h4><p>Mostly gone to Magnimar after patriarch Ethram died. Only <strong>Kaleb Valdemar</strong> (wizard) still visits the decaying, "haunted" Valdemar Manor (S47).</p></div>
+        <div class="card" data-icon="deverin-family"><div class="role">Ascendant</div><h4>Deverin</h4><p><strong>Kendra Deverin</strong> is the current mayor, championing the spread of power across the seven factions.</p></div>
+        <div class="card" data-icon="kaijitsu-family"><div class="role">Departed to glory</div><h4>Kaijitsu</h4><p>Down to one famous member — <strong>Ameiko Kaijitsu</strong>, former Rusty Dragon owner, now <strong>Empress of distant Minkai</strong>. Her manor (S49) waits ready.</p></div>
+        <div class="card" data-icon="scarnetti-family"><div class="role">Clawing back</div><h4>Scarnetti</h4><p>Fallen from grace but rebuilding via the <strong>Scarnetti Consortium</strong> under bitter <strong>Titus Scarnetti</strong> (rumored Bunyip Club ties).</p></div>
+        <div class="card" data-icon="valdemar-family"><div class="role">Fading</div><h4>Valdemar</h4><p>Mostly gone to Magnimar after patriarch Ethram died. Only <strong>Kaleb Valdemar</strong> (wizard) still visits the decaying, "haunted" Valdemar Manor (S47).</p></div>
       </div>
     </section>
 
@@ -501,43 +519,43 @@
 
       <h3>Power &amp; Patrons</h3>
       <div class="grid">
-        <div class="card"><div class="role">Quest-giver</div><h4>Abstalar Zantus</h4><p>Elderly <strong>cleric of Desna</strong> and caretaker of the Cathedral; the town's most powerful cleric, who <strong>summons your party</strong>. Eager to retire.</p></div>
-        <div class="card"><div class="role">Mayor</div><h4>Kendra Deverin</h4><p>Capable politician spreading power across the factions.</p></div>
-        <div class="card"><div class="role">Sheriff</div><h4>Belor Hemlock</h4><p>Veteran fighter, ~20 years on the job; married to Kaye Tesarani.</p></div>
-        <div class="card"><div class="role">Power broker</div><h4>Kaye Tesarani</h4><p>The sheriff's wife; runs the Pixie's Kitten and quietly wields sorcery — increasingly handles the watch's politics.</p></div>
-        <div class="card"><div class="role">Noble rival</div><h4>Titus Scarnetti</h4><p>Notorious nobleman; founder of the Scarnetti Consortium, resentful of lost influence.</p></div>
-        <div class="card"><div class="role">Crime boss</div><h4>Jubrayl Vhiski</h4><p>Leader of the <strong>Bunyip Club</strong>; holds court at the Feedbag tavern.</p></div>
+        <div class="card" data-icon="abstalar-zantus"><div class="role">Quest-giver</div><h4>Abstalar Zantus</h4><p>Elderly <strong>cleric of Desna</strong> and caretaker of the Cathedral; the town's most powerful cleric, who <strong>summons your party</strong>. Eager to retire.</p></div>
+        <div class="card" data-icon="kendra-deverin"><div class="role">Mayor</div><h4>Kendra Deverin</h4><p>Capable politician spreading power across the factions.</p></div>
+        <div class="card" data-icon="belor-hemlock"><div class="role">Sheriff</div><h4>Belor Hemlock</h4><p>Veteran fighter, ~20 years on the job; married to Kaye Tesarani.</p></div>
+        <div class="card" data-icon="kaye-tesarani"><div class="role">Power broker</div><h4>Kaye Tesarani</h4><p>The sheriff's wife; runs the Pixie's Kitten and quietly wields sorcery — increasingly handles the watch's politics.</p></div>
+        <div class="card" data-icon="titus-scarnetti"><div class="role">Noble rival</div><h4>Titus Scarnetti</h4><p>Notorious nobleman; founder of the Scarnetti Consortium, resentful of lost influence.</p></div>
+        <div class="card" data-icon="jubrayl-vhiski"><div class="role">Crime boss</div><h4>Jubrayl Vhiski</h4><p>Leader of the <strong>Bunyip Club</strong>; holds court at the Feedbag tavern.</p></div>
       </div>
 
       <h3>Sages, Scholars &amp; Casters</h3>
       <div class="grid">
-        <div class="card"><div class="role">Sage</div><h4>Brodert Quink</h4><p>One of Sandpoint's oldest citizens; the Lost Coast's foremost authority on <strong>Thassilon</strong>; hub of the Runewatchers.</p></div>
-        <div class="card"><div class="role">Headmaster</div><h4>Ilsoari Gandethus</h4><p>Wizard who runs Turandarok Academy (orphanage + school).</p></div>
-        <div class="card"><div class="role">Cartographer</div><h4>Veznutt Parooh</h4><p>Gnome wizard; runs The Way North map shop.</p></div>
+        <div class="card" data-icon="brodert-quink"><div class="role">Sage</div><h4>Brodert Quink</h4><p>One of Sandpoint's oldest citizens; the Lost Coast's foremost authority on <strong>Thassilon</strong>; hub of the Runewatchers.</p></div>
+        <div class="card" data-icon="thassilon-rune"><div class="role">Headmaster</div><h4>Ilsoari Gandethus</h4><p>Wizard who runs Turandarok Academy (orphanage + school).</p></div>
+        <div class="card" data-icon="runewatchers"><div class="role">Cartographer</div><h4>Veznutt Parooh</h4><p>Gnome wizard; runs The Way North map shop.</p></div>
         <div class="card"><div class="role">Monk</div><h4>Jabyl Sorn</h4><p>Tends the meditative House of Blue Stones and a private library.</p></div>
         <div class="card"><div class="role">Sorcerer</div><h4>Lanalee Magravi</h4><p>Took over Risa's Place from her late mother Risa, keeper of dream &amp; legend lore.</p></div>
-        <div class="card"><div class="role">Curio expert</div><h4>Vorvashali Voon</h4><p>Runs the Feathered Serpent; has a supernatural knack for understanding magic items.</p></div>
+        <div class="card" data-icon="thassilon-rune"><div class="role">Curio expert</div><h4>Vorvashali Voon</h4><p>Runs the Feathered Serpent; has a supernatural knack for understanding magic items.</p></div>
       </div>
 
       <h3>Merchants, Crafters &amp; Tavern-keepers</h3>
       <div class="grid">
-        <div class="card"><div class="role">League head</div><h4>Jasper Korvaski</h4><p>Paladin running the Mercantile League; recently married Cyrdak Drokkus.</p></div>
-        <div class="card"><div class="role">Boutique</div><h4>Hayliss Korvaski</h4><p>Cleric of Abadar; runs the Sandpoint Boutique with deep adventuring contacts.</p></div>
-        <div class="card"><div class="role">Impresario</div><h4>Cyrdak Drokkus</h4><p>Flamboyant bard of the Sandpoint Theater.</p></div>
+        <div class="card" data-icon="mercantile-league"><div class="role">League head</div><h4>Jasper Korvaski</h4><p>Paladin running the Mercantile League; recently married Cyrdak Drokkus.</p></div>
+        <div class="card" data-icon="mercantile-league"><div class="role">Boutique</div><h4>Hayliss Korvaski</h4><p>Cleric of Abadar; runs the Sandpoint Boutique with deep adventuring contacts.</p></div>
+        <div class="card" data-icon="kaijitsu-family"><div class="role">Impresario</div><h4>Cyrdak Drokkus</h4><p>Flamboyant bard of the Sandpoint Theater.</p></div>
         <div class="card"><div class="role">Bookseller</div><h4>Chask Haladan</h4><p>Bard; runs the Curious Goblin bookstore.</p></div>
-        <div class="card"><div class="role">Armorer</div><h4>Savah Bevaniky</h4><p>Fighter; runs Savah's Armory — unnerved by the recent surge in demand for adventuring gear.</p></div>
-        <div class="card"><div class="role">Innkeeper</div><h4>Bethana Corwin</h4><p>Halfling now running the famous Rusty Dragon in Ameiko's stead.</p></div>
-        <div class="card"><div class="role">Tavern-keeper</div><h4>Jargie Quinn</h4><p>Keeps The Hagfish — home of pet hagfish <em>Norah</em> and the "yarning" tall-tale contests.</p></div>
-        <div class="card"><div class="role">Brewer</div><h4>Gaven Deverin</h4><p>Paladin; surviving co-founder of Two Knight Brewery (his brother was a Chopper victim).</p></div>
-        <div class="card"><div class="role">Alchemist</div><h4>"Pillbug" Podiker</h4><p>Abrasive alchemist of Pillbug's Pantry — the town's worst-kept poison &amp; drug source.</p></div>
-        <div class="card"><div class="role">Alchemist</div><h4>Nisk Tander</h4><p>Friendlier (if sloppier) half-elf at Bottled Solutions.</p></div>
-        <div class="card"><div class="role">Healer</div><h4>Hannah Velerin</h4><p>Elf cleric of Gozreh; midwife and caregiver for those the Cathedral can't reach.</p></div>
-        <div class="card"><div class="role">Gravedigger</div><h4>Naffer Vosk</h4><p>Cleric of Sarenrae; tends the Boneyard.</p></div>
+        <div class="card" data-icon="armory"><div class="role">Armorer</div><h4>Savah Bevaniky</h4><p>Fighter; runs Savah's Armory — unnerved by the recent surge in demand for adventuring gear.</p></div>
+        <div class="card" data-icon="kaijitsu-family"><div class="role">Innkeeper</div><h4>Bethana Corwin</h4><p>Halfling now running the famous Rusty Dragon in Ameiko's stead.</p></div>
+        <div class="card" data-icon="harbor"><div class="role">Tavern-keeper</div><h4>Jargie Quinn</h4><p>Keeps The Hagfish — home of pet hagfish <em>Norah</em> and the "yarning" tall-tale contests.</p></div>
+        <div class="card" data-icon="deverin-family"><div class="role">Brewer</div><h4>Gaven Deverin</h4><p>Paladin; surviving co-founder of Two Knight Brewery (his brother was a Chopper victim).</p></div>
+        <div class="card" data-icon="alchemist"><div class="role">Alchemist</div><h4>"Pillbug" Podiker</h4><p>Abrasive alchemist of Pillbug's Pantry — the town's worst-kept poison &amp; drug source.</p></div>
+        <div class="card" data-icon="alchemist"><div class="role">Alchemist</div><h4>Nisk Tander</h4><p>Friendlier (if sloppier) half-elf at Bottled Solutions.</p></div>
+        <div class="card" data-icon="cathedral"><div class="role">Healer</div><h4>Hannah Velerin</h4><p>Elf cleric of Gozreh; midwife and caregiver for those the Cathedral can't reach.</p></div>
+        <div class="card" data-icon="boneyard"><div class="role">Gravedigger</div><h4>Naffer Vosk</h4><p>Cleric of Sarenrae; tends the Boneyard.</p></div>
         <div class="card"><div class="role">Stablemaster</div><h4>Daviren Hosk</h4><p>Ranger of Goblin Squash Stables; his goblin-hatred is off-putting.</p></div>
-        <div class="card"><div class="role">Locksmith</div><h4>Volioker Briskalberd</h4><p>Proudly incorruptible dwarf who runs the town's Locksmith (S9) — a shop he never bothered to give a fancier name.</p></div>
-        <div class="card"><div class="role">Harbormaster</div><h4>Jhalevia Stensin</h4><p>Foul-mouthed but fair; runs the shipyard.</p></div>
-        <div class="card"><div class="role">Clerk</div><h4>Shayliss Vinder</h4><p>Genderfluid clerk increasingly running the Town Hall.</p></div>
-        <div class="card"><div class="role">Garbage crew</div><h4>Gorvi</h4><p>Half-orc running the town's garbage with a rough crew; tied to the Bunyip Club.</p></div>
+        <div class="card" data-icon="town-watch"><div class="role">Locksmith</div><h4>Volioker Briskalberd</h4><p>Proudly incorruptible dwarf who runs the town's Locksmith (S9) — a shop he never bothered to give a fancier name.</p></div>
+        <div class="card" data-icon="harbor"><div class="role">Harbormaster</div><h4>Jhalevia Stensin</h4><p>Foul-mouthed but fair; runs the shipyard.</p></div>
+        <div class="card" data-icon="town-hall"><div class="role">Clerk</div><h4>Shayliss Vinder</h4><p>Genderfluid clerk increasingly running the Town Hall.</p></div>
+        <div class="card" data-icon="bunyip-club"><div class="role">Garbage crew</div><h4>Gorvi</h4><p>Half-orc running the town's garbage with a rough crew; tied to the Bunyip Club.</p></div>
       </div>
     </section>
 
@@ -551,10 +569,10 @@
       <div class="locgroup">
         <h3>Civic, Religious &amp; Faction Halls</h3>
         <ul class="loclist">
-          <li><span class="sid">S1</span><span class="lname">Sandpoint Cathedral</span> <span class="ltype">Temple</span> — Largest building; multi-denominational shrines; healing &amp; +1 favored weapons. <em>Abstalar Zantus.</em></li>
-          <li><span class="sid">S2</span><span class="lname">Sandpoint Boneyard</span> <span class="ltype">Cemetery</span> — The graveyard &amp; opening-mystery site. <em>Naffer Vosk.</em></li>
-          <li><span class="sid">S10</span><span class="lname">Sandpoint Garrison</span> <span class="ltype">Barracks/Jail</span> — Rebuilt after a sinkhole dropped into a Thassilonian dungeon. <em>Belor Hemlock.</em></li>
-          <li><span class="sid">S11</span><span class="lname">Sandpoint Town Hall</span> <span class="ltype">Courthouse</span> — Political heart of town. <em>Shayliss Vinder.</em></li>
+          <li data-icon="cathedral"><span class="sid">S1</span><span class="lname">Sandpoint Cathedral</span> <span class="ltype">Temple</span> — Largest building; multi-denominational shrines; healing &amp; +1 favored weapons. <em>Abstalar Zantus.</em></li>
+          <li data-icon="boneyard"><span class="sid">S2</span><span class="lname">Sandpoint Boneyard</span> <span class="ltype">Cemetery</span> — The graveyard &amp; opening-mystery site. <em>Naffer Vosk.</em></li>
+          <li data-icon="town-watch"><span class="sid">S10</span><span class="lname">Sandpoint Garrison</span> <span class="ltype">Barracks/Jail</span> — Rebuilt after a sinkhole dropped into a Thassilonian dungeon. <em>Belor Hemlock.</em></li>
+          <li data-icon="town-hall"><span class="sid">S11</span><span class="lname">Sandpoint Town Hall</span> <span class="ltype">Courthouse</span> — Political heart of town. <em>Shayliss Vinder.</em></li>
           <li><span class="sid">S19</span><span class="lname">House of Blue Stones</span> <span class="ltype">Monastery</span> — Meditative hall + hidden library. <em>Jabyl Sorn.</em></li>
           <li><span class="sid">S27</span><span class="lname">Turandarok Academy</span> <span class="ltype">School</span> — Orphanage-first, school-second. <em>Ilsoari Gandethus.</em></li>
         </ul>
@@ -563,16 +581,16 @@
       <div class="locgroup">
         <h3>Shops &amp; Services</h3>
         <ul class="loclist">
-          <li><span class="sid">S4</span><span class="lname">The Way North</span> <span class="ltype">Maps</span> — Regional &amp; novelty treasure maps. <em>Veznutt Parooh.</em></li>
+          <li data-icon="runewatchers"><span class="sid">S4</span><span class="lname">The Way North</span> <span class="ltype">Maps</span> — Regional &amp; novelty treasure maps. <em>Veznutt Parooh.</em></li>
           <li><span class="sid">S5</span><span class="lname">Rings and Things</span> <span class="ltype">Jeweler</span> — Jewelry, art &amp; moneylending. <em>Maver Kesk.</em></li>
           <li><span class="sid">S9</span><span class="lname">Locksmith</span> <span class="ltype">Service</span> — <em>Volioker Briskalberd.</em></li>
-          <li><span class="sid">S12</span><span class="lname">Savah's Armory</span> <span class="ltype">Weapons</span> — Largest arms shop, incl. runes. <em>Savah Bevaniky.</em></li>
+          <li data-icon="armory"><span class="sid">S12</span><span class="lname">Savah's Armory</span> <span class="ltype">Weapons</span> — Largest arms shop, incl. runes. <em>Savah Bevaniky.</em></li>
           <li><span class="sid">S14</span><span class="lname">Rovanky Tannery</span> <span class="ltype">Leather</span> — Perfectionist <em>Larz Rovanky.</em></li>
           <li><span class="sid">S15</span><span class="lname">Red Dog Smithy</span> <span class="ltype">Smithing</span> — Hot-tempered <em>Das Korvut.</em></li>
-          <li><span class="sid">S16</span><span class="lname">Pillbug's Pantry</span> <span class="ltype">Alchemy</span> — Not-so-secret poisons &amp; drugs. <em>"Pillbug" Podiker.</em> <span class="tag crime">Bunyip-tied</span></li>
-          <li><span class="sid">S17</span><span class="lname">Bottled Solutions</span> <span class="ltype">Alchemy</span> — Cleaner, friendlier. <em>Nisk Tander.</em></li>
+          <li data-icon="alchemist"><span class="sid">S16</span><span class="lname">Pillbug's Pantry</span> <span class="ltype">Alchemy</span> — Not-so-secret poisons &amp; drugs. <em>"Pillbug" Podiker.</em> <span class="tag crime">Bunyip-tied</span></li>
+          <li data-icon="alchemist"><span class="sid">S17</span><span class="lname">Bottled Solutions</span> <span class="ltype">Alchemy</span> — Cleaner, friendlier. <em>Nisk Tander.</em></li>
           <li><span class="sid">S21</span><span class="lname">Sandpoint Savories</span> <span class="ltype">Bakery</span> — <em>Alma Avertin.</em></li>
-          <li><span class="sid">S22</span><span class="lname">The Curious Goblin</span> <span class="ltype">Bookstore</span> — <em>Chask Haladan.</em></li>
+          <li data-icon="runewatchers"><span class="sid">S22</span><span class="lname">The Curious Goblin</span> <span class="ltype">Bookstore</span> — <em>Chask Haladan.</em></li>
           <li><span class="sid">S24</span><span class="lname">Carpenter's Guild</span> <span class="ltype">Guild</span> — <em>Aesrick Battlehorn</em> (feuds with the shipyard).</li>
           <li><span class="sid">S26</span><span class="lname">General Store</span> <span class="ltype">Goods</span> — Oldest store in town. <em>Ven Vinder.</em></li>
           <li><span class="sid">S30</span><span class="lname">Vernah's Fine Clothing</span> <span class="ltype">Clothier</span> — <em>Rynshinn Povalli.</em></li>
@@ -580,9 +598,9 @@
           <li><span class="sid">S34</span><span class="lname">Valdemar Fish Market</span> <span class="ltype">Seafood</span> — <em>Turch Sterglus.</em></li>
           <li><span class="sid">S36</span><span class="lname">Sandpoint Meat Market</span> <span class="ltype">Butcher</span> — Boastful <em>Chod Bevuk.</em></li>
           <li><span class="sid">S41</span><span class="lname">Sandpoint Boutique</span> <span class="ltype">Gear</span> — Dungeon-rescued treasures. <em>Hayliss Korvaski.</em></li>
-          <li><span class="sid">S44</span><span class="lname">The Feathered Serpent</span> <span class="ltype">Curios</span> — Best place to <strong>sell</strong> finds. <em>Vorvashali Voon.</em></li>
-          <li><span class="sid">S45</span><span class="lname">Hannah's</span> <span class="ltype">Medicine</span> — <em>Hannah Velerin.</em></li>
-          <li><span class="sid">S46</span><span class="lname">Sandpoint Shipyard</span> <span class="ltype">Guild</span> — <em>Jhalevia Stensin.</em></li>
+          <li data-icon="thassilon-rune"><span class="sid">S44</span><span class="lname">The Feathered Serpent</span> <span class="ltype">Curios</span> — Best place to <strong>sell</strong> finds. <em>Vorvashali Voon.</em></li>
+          <li data-icon="cathedral"><span class="sid">S45</span><span class="lname">Hannah's</span> <span class="ltype">Medicine</span> — <em>Hannah Velerin.</em></li>
+          <li data-icon="harbor"><span class="sid">S46</span><span class="lname">Sandpoint Shipyard</span> <span class="ltype">Guild</span> — <em>Jhalevia Stensin.</em></li>
         </ul>
       </div>
 
@@ -590,15 +608,15 @@
         <h3>Inns, Taverns &amp; Entertainment</h3>
         <ul class="loclist">
           <li><span class="sid">S3</span><span class="lname">The White Deer</span> <span class="ltype">Inn/Tavern</span> — Town's tallest building. <em>Garridan Viskalai.</em></li>
-          <li><span class="sid">S13</span><span class="lname">Risa's Place</span> <span class="ltype">Tavern</span> — Magic-enhanced cooking. <em>Lanalee Magravi.</em></li>
+          <li data-icon="kaye-tesarani"><span class="sid">S13</span><span class="lname">Risa's Place</span> <span class="ltype">Tavern</span> — Magic-enhanced cooking. <em>Lanalee Magravi.</em></li>
           <li><span class="sid">S18</span><span class="lname">Cracktooth's Tavern</span> <span class="ltype">Tavern</span> — Theatergoers' haunt. <em>"Cracktooth" Berinni.</em></li>
-          <li><span class="sid">S23</span><span class="lname">Sandpoint Theater</span> <span class="ltype">Theater</span> — Town's pride. <em>Cyrdak Drokkus.</em></li>
-          <li><span class="sid">S33</span><span class="lname">The Hagfish</span> <span class="ltype">Tavern</span> — Pet hagfish &amp; "yarning" contests. <em>Jargie Quinn.</em></li>
+          <li data-icon="kaijitsu-family"><span class="sid">S23</span><span class="lname">Sandpoint Theater</span> <span class="ltype">Theater</span> — Town's pride. <em>Cyrdak Drokkus.</em></li>
+          <li data-icon="harbor"><span class="sid">S33</span><span class="lname">The Hagfish</span> <span class="ltype">Tavern</span> — Pet hagfish &amp; "yarning" contests. <em>Jargie Quinn.</em></li>
           <li><span class="sid">S35</span><span class="lname">Sandpoint Market</span> <span class="ltype">Market</span> — Busy twice weekly.</li>
-          <li><span class="sid">S37</span><span class="lname">The Rusty Dragon</span> <span class="ltype">Inn/Tavern</span> — Town's most famous inn. <em>Bethana Corwin.</em></li>
-          <li><span class="sid">S39</span><span class="lname">Two Knight Brewery</span> <span class="ltype">Brewery</span> — <em>Gaven Deverin.</em></li>
-          <li><span class="sid">S42</span><span class="lname">The Feedbag</span> <span class="ltype">Tavern</span> — Rowdiest in town; Bunyip haunt. <em>Jubrayl Vhiski.</em> <span class="tag crime">Bunyip Club</span></li>
-          <li><span class="sid">S43</span><span class="lname">The Pixie's Kitten</span> <span class="ltype">Brothel</span> — <em>Kaye Tesarani.</em></li>
+          <li data-icon="kaijitsu-family"><span class="sid">S37</span><span class="lname">The Rusty Dragon</span> <span class="ltype">Inn/Tavern</span> — Town's most famous inn. <em>Bethana Corwin.</em></li>
+          <li data-icon="deverin-family"><span class="sid">S39</span><span class="lname">Two Knight Brewery</span> <span class="ltype">Brewery</span> — <em>Gaven Deverin.</em></li>
+          <li data-icon="bunyip-club"><span class="sid">S42</span><span class="lname">The Feedbag</span> <span class="ltype">Tavern</span> — Rowdiest in town; Bunyip haunt. <em>Jubrayl Vhiski.</em> <span class="tag crime">Bunyip Club</span></li>
+          <li data-icon="kaye-tesarani"><span class="sid">S43</span><span class="lname">The Pixie's Kitten</span> <span class="ltype">Brothel</span> — <em>Kaye Tesarani.</em></li>
           <li><span class="sid">S28</span><span class="lname">Mvashti's Place</span> <span class="ltype">Hostel</span> — Varisian waystation. <em>Jiolan Verneeth.</em></li>
         </ul>
       </div>
@@ -607,10 +625,10 @@
         <h3>Guildhalls &amp; Industry</h3>
         <ul class="loclist">
           <li><span class="sid">S29</span><span class="lname">Grocer's Hall</span> <span class="ltype">Guild</span> — Farmers' trade hall. <em>Olmur Danavakus.</em></li>
-          <li><span class="sid">S40</span><span class="lname">Mercantile League</span> <span class="ltype">Faction HQ</span> — Passage, shipping, property. <em>Jasper Korvaski.</em></li>
-          <li><span class="sid">S38</span><span class="lname">Goblin Squash Stables</span> <span class="ltype">Stables</span> — <em>Daviren Hosk.</em></li>
-          <li><span class="sid">S25</span><span class="lname">Sandpoint Lumber Mill</span> <span class="ltype">Scarnetti-owned</span> — Site of a grisly post-raid murder; rumored haunted. <em>Ibor Thorn.</em></li>
-          <li><span class="sid">S32</span><span class="lname">Scarnetti Mill</span> <span class="ltype">Scarnetti-owned</span> — Grain mill. <em>Courrin Whesterwill.</em></li>
+          <li data-icon="mercantile-league"><span class="sid">S40</span><span class="lname">Mercantile League</span> <span class="ltype">Faction HQ</span> — Passage, shipping, property. <em>Jasper Korvaski.</em></li>
+          <li data-icon="town-watch"><span class="sid">S38</span><span class="lname">Goblin Squash Stables</span> <span class="ltype">Stables</span> — <em>Daviren Hosk.</em></li>
+          <li data-icon="scarnetti-family"><span class="sid">S25</span><span class="lname">Sandpoint Lumber Mill</span> <span class="ltype">Scarnetti-owned</span> — Site of a grisly post-raid murder; rumored haunted. <em>Ibor Thorn.</em></li>
+          <li data-icon="scarnetti-consortium"><span class="sid">S32</span><span class="lname">Scarnetti Mill</span> <span class="ltype">Scarnetti-owned</span> — Grain mill. <em>Courrin Whesterwill.</em></li>
         </ul>
       </div>
 
@@ -618,28 +636,28 @@
         <h3>Ruins, Hazards &amp; Landmarks</h3>
         <ul class="loclist">
           <li><span class="sid">S6</span><span class="lname">Junker's Edge</span> <span class="ltype">Town dump</span> — Cliffside refuse; dangerous scavengers. <span class="tag ruin">Hazard</span></li>
-          <li><span class="sid">S7</span><span class="lname">Gorvi's Shack</span> <span class="ltype">Residence</span> — Garbage crew base. <em>Gorvi.</em> <span class="tag crime">Bunyip-tied</span></li>
-          <li><span class="sid">S8</span><span class="lname">Brodert's House</span> <span class="ltype">Residence</span> — Sage &amp; Runewatcher hub. <em>Brodert Quink.</em></li>
-          <li><span class="sid">S20</span><span class="lname">Sandpoint Glassworks</span> <span class="ltype">Ruin</span> — Abandoned, presumed haunted. <span class="tag ruin">Hazard</span></li>
+          <li data-icon="bunyip-club"><span class="sid">S7</span><span class="lname">Gorvi's Shack</span> <span class="ltype">Residence</span> — Garbage crew base. <em>Gorvi.</em> <span class="tag crime">Bunyip-tied</span></li>
+          <li data-icon="brodert-quink"><span class="sid">S8</span><span class="lname">Brodert's House</span> <span class="ltype">Residence</span> — Sage &amp; Runewatcher hub. <em>Brodert Quink.</em></li>
+          <li data-icon="thassilon-rune"><span class="sid">S20</span><span class="lname">Sandpoint Glassworks</span> <span class="ltype">Ruin</span> — Abandoned, presumed haunted. <span class="tag ruin">Hazard</span></li>
         </ul>
       </div>
 
       <div class="locgroup">
         <h3>The Family Manors — Schooner Gulch Road</h3>
         <ul class="loclist">
-          <li><span class="sid">S47</span><span class="lname">Valdemar Manor</span> <span class="ltype">Manor</span> — Boarded up, falling to ruin, "haunted" (the Sandpoint Devil). <em>Kaleb Valdemar</em> visits. <span class="tag ruin">Hazard</span></li>
-          <li><span class="sid">S48</span><span class="lname">Scarnetti Manor</span> <span class="ltype">Manor</span> — Seat of the Scarnetti Consortium. <em>Titus Scarnetti.</em></li>
-          <li><span class="sid">S49</span><span class="lname">Kaijitsu Manor</span> <span class="ltype">Manor</span> — Kept ready for Empress Ameiko. <em>Velarie Neserin &amp; Anyaia.</em></li>
-          <li><span class="sid">S50</span><span class="lname">Deverin Manor</span> <span class="ltype">Manor</span> — Home of Mayor Kendra Deverin &amp; family.</li>
+          <li data-icon="valdemar-family"><span class="sid">S47</span><span class="lname">Valdemar Manor</span> <span class="ltype">Manor</span> — Boarded up, falling to ruin, "haunted" (the Sandpoint Devil). <em>Kaleb Valdemar</em> visits. <span class="tag ruin">Hazard</span></li>
+          <li data-icon="scarnetti-consortium"><span class="sid">S48</span><span class="lname">Scarnetti Manor</span> <span class="ltype">Manor</span> — Seat of the Scarnetti Consortium. <em>Titus Scarnetti.</em></li>
+          <li data-icon="kaijitsu-family"><span class="sid">S49</span><span class="lname">Kaijitsu Manor</span> <span class="ltype">Manor</span> — Kept ready for Empress Ameiko. <em>Velarie Neserin &amp; Anyaia.</em></li>
+          <li data-icon="deverin-family"><span class="sid">S50</span><span class="lname">Deverin Manor</span> <span class="ltype">Manor</span> — Home of Mayor Kendra Deverin &amp; family.</li>
         </ul>
       </div>
 
       <div class="locgroup">
         <h3>Beyond the Walls — the Hinterlands</h3>
         <ul class="loclist">
-          <li><span class="sid" style="background:#8b2e1f">⚠</span><span class="lname">The Pit</span> <span class="ltype">Subterranean ruin</span> — A vast Thassilonian ruin exposed by a sinkhole on the plateau <em>east of town</em> (AR 4713); monster-claimed and strongly off-limits. Looms over the campaign's dangers.</li>
-          <li><span class="sid" style="background:#6d2f5e">▲</span><span class="lname">Thistletop</span> <span class="ltype">Goblin stronghold</span> — Coastal lair of the Thistletop goblins, who raided Sandpoint during the 4707 Swallowtail Festival.</li>
-          <li><span class="sid" style="background:#3f5d3a">≈</span><span class="lname">Brinestump Marsh</span> <span class="ltype">Marshland</span> — Wetlands southeast of town; home of the Licktoad goblin tribe.</li>
+          <li data-icon="thassilon-rune"><span class="sid" style="background:#8b2e1f">⚠</span><span class="lname">The Pit</span> <span class="ltype">Subterranean ruin</span> — A vast Thassilonian ruin exposed by a sinkhole on the plateau <em>east of town</em> (AR 4713); monster-claimed and strongly off-limits. Looms over the campaign's dangers.</li>
+          <li data-icon="bunyip-club"><span class="sid" style="background:#6d2f5e">▲</span><span class="lname">Thistletop</span> <span class="ltype">Goblin stronghold</span> — Coastal lair of the Thistletop goblins, who raided Sandpoint during the 4707 Swallowtail Festival.</li>
+          <li data-icon="harbor"><span class="sid" style="background:#3f5d3a">≈</span><span class="lname">Brinestump Marsh</span> <span class="ltype">Marshland</span> — Wetlands southeast of town; home of the Licktoad goblin tribe.</li>
         </ul>
       </div>
     </section>
@@ -657,7 +675,7 @@
       <h2 class="sec"><span class="num">10</span> House Rules (Homebrew)</h2>
       <p class="lead">The GM's table rules for this campaign. Read these and come back with your thoughts &mdash; it's part of your homework.</p>
 
-      <h3>🆕 New This Campaign</h3>
+      <h3>New This Campaign</h3>
 
       <p style="margin-top:.6em"><strong style="color:var(--accent)">Sweeter Hero Points.</strong> Hero Points can now be spent on new effects (to reward initiative &mdash; like actually doing the recap):</p>
       <table>
@@ -674,7 +692,7 @@
       </div>
 
       <div class="grid">
-        <div class="card"><div class="role">New rule</div><h4>🚪 Doors</h4>
+        <div class="card"><div class="role">New rule</div><h4>Doors</h4>
           <ul>
             <li>Outside combat, open doors even with <strong>hands full</strong>.</li>
             <li>Open with no free hand if wielding something <strong>two-handed</strong>.</li>
@@ -682,7 +700,7 @@
             <li><span class="lead-in">Exception:</span> doors needing a Thievery or Athletics check.</li>
           </ul>
         </div>
-        <div class="card"><div class="role">New rule · earn HP</div><h4>✍️ Downtime by Post</h4>
+        <div class="card"><div class="role">New rule · earn HP</div><h4>Downtime by Post</h4>
           <p>Once per week, a genuine downtime post earns a <strong>Hero Point</strong> (GM discretion). It must:</p>
           <ul>
             <li>contain <strong>no AI-generated content</strong>;</li>
@@ -692,7 +710,7 @@
           </ul>
           <p style="margin-top:.45em">Collaborative posts can earn a HP for both writers.</p>
         </div>
-        <div class="card"><div class="role">New rule · earn HP</div><h4>🎭 Vignettes</h4>
+        <div class="card"><div class="role">New rule · earn HP</div><h4>Vignettes</h4>
           <p>A session featuring a vignette about <strong>your</strong> character nets an extra Hero Point if you either:</p>
           <ul>
             <li>write it yourself (after GM review, edits &amp; approval), or</li>
@@ -700,7 +718,7 @@
           </ul>
           <p style="margin-top:.45em"><span class="lead-in">No AI-generated content.</span></p>
         </div>
-        <div class="card"><div class="role">New rule</div><h4>🗺️ Map Navigation</h4>
+        <div class="card"><div class="role">New rule</div><h4>Map Navigation</h4>
           <p>Once initiative triggers, <strong>your token position is locked</strong> &mdash; the GM won't move it.</p>
           <ul>
             <li>Unless you used <strong>"Stepping Away,"</strong> messaged that you stepped out, or asked for a move due to Foundry trouble.</li>
@@ -708,7 +726,7 @@
           </ul>
           <p style="margin-top:.45em">Trap and ambush stakes stay real.</p>
         </div>
-        <div class="card"><div class="role">New rule</div><h4>⚖️ Legacy vs. Remaster</h4>
+        <div class="card"><div class="role">New rule</div><h4>Legacy vs. Remaster</h4>
           <ul>
             <li>Legacy content is fine if chosen <strong>intentionally</strong>.</li>
             <li>Picked Legacy by accident? Swap to Remaster freely, no permission needed.</li>
@@ -718,9 +736,9 @@
         </div>
       </div>
 
-      <h3>📜 Standing Rules (carried over)</h3>
+      <h3>Standing Rules (carried over)</h3>
       <div class="grid">
-        <div class="card"><div class="role">Standing rule</div><h4>🧠 Recall Knowledge</h4>
+        <div class="card"><div class="role">Standing rule</div><h4>Recall Knowledge</h4>
           <ul>
             <li><span class="lead-in">Success:</span> the name, a general description, one trait, and one useful info.</li>
             <li><span class="lead-in">Critical success:</span> all traits, plus two useful infos.</li>
@@ -740,7 +758,7 @@
             <li>GM's choice</li>
           </ul>
         </div>
-        <div class="card"><div class="role">Standing rule</div><h4>⏱️ Combat Readiness</h4>
+        <div class="card"><div class="role">Standing rule</div><h4>Combat Readiness</h4>
           <p>Have a plan <strong>before</strong> your turn starts.</p>
           <ul>
             <li>Away from Foundry at turn start &rarr; <strong>Delay</strong> until you return.</li>
@@ -749,7 +767,7 @@
             <li>Use the <strong>"Step Away for a Minute"</strong> button when needed.</li>
           </ul>
         </div>
-        <div class="card"><div class="role">Standing rule · earn HP</div><h4>⚡ Lightning Rounds</h4>
+        <div class="card"><div class="role">Standing rule · earn HP</div><h4>Lightning Rounds</h4>
           <ul>
             <li>Called when a fight is clearly won and stakes are low.</li>
             <li>Take turns in <strong>seconds, not minutes</strong> &mdash; delays get skipped or ended.</li>
@@ -757,7 +775,7 @@
             <li>Hero Points carry over at end of session.</li>
           </ul>
         </div>
-        <div class="card"><div class="role">Standing rule</div><h4>🃏 Hero Point Cards</h4>
+        <div class="card"><div class="role">Standing rule</div><h4>Hero Point Cards</h4>
           <ul>
             <li>We use the optional <strong>Hero Point Deck</strong>.</li>
             <li>Draw a card whenever you gain a Hero Point &mdash; you always hold cards equal to your current HP.</li>
@@ -784,8 +802,8 @@
       <h2 class="sec"><span class="num">11</span> Your Homework <span style="font-size:.7em;color:var(--ink-soft)">(yes, seriously)</span></h2>
       <p class="lead">From the Session 0.0 prep deck &mdash; do this before character creation.</p>
       <div class="grid">
-        <div class="card"><div class="role">Step 1</div><h4>📖 Start Your Prep</h4><p><strong>Read this guide in depth.</strong> Know your character options, the Sandpoint gazetteer, and what kind of campaign you're signing up for. Then <strong>read the new House Rules</strong> (above) and come back with your thoughts.</p></div>
-        <div class="card"><div class="role">Step 2</div><h4>🤝 Coordinate Your Party</h4>
+        <div class="card"><div class="role">Step 1</div><h4>Start Your Prep</h4><p><strong>Read this guide in depth.</strong> Know your character options, the Sandpoint gazetteer, and what kind of campaign you're signing up for. Then <strong>read the new House Rules</strong> (above) and come back with your thoughts.</p></div>
+        <div class="card"><div class="role">Step 2</div><h4>Coordinate Your Party</h4>
           <p>Talk to each other! Before locking characters, make sure you've covered:</p>
           <ul class="check">
             <li><strong>Healing</strong> covered</li>
@@ -794,10 +812,10 @@
             <li><strong>Good synergies</strong></li>
           </ul>
         </div>
-        <div class="card"><div class="role">Step 3</div><h4>🎭 Write a Backstory Vignette</h4><p>Optional &mdash; but it pays. Submit a vignette and earn gold before the campaign even starts (see rewards).</p></div>
+        <div class="card"><div class="role">Step 3</div><h4>Write a Backstory Vignette</h4><p>Optional &mdash; but it pays. Submit a vignette and earn gold before the campaign even starts (see rewards).</p></div>
       </div>
       <div class="callout">
-        <strong>💰 Vignette rewards.</strong> Every player who submits a vignette starts with an extra <strong>+15 gp</strong>. The <strong>best</strong> vignette (judged by your totally unbiased GM) earns a further <strong>+50 gp</strong>.
+        <strong>Vignette rewards.</strong> Every player who submits a vignette starts with an extra <strong>+15 gp</strong>. The <strong>best</strong> vignette (judged by your totally unbiased GM) earns a further <strong>+50 gp</strong>.
       </div>
     </section>
 
@@ -810,6 +828,119 @@
 <div id="tooltip"></div>
 
 <script>
+/* Custom small pictogram icons. Add data-icon to cards, table rows, or location
+   items; untagged cards get a deterministic fallback from title/role text. */
+(function(){
+  var GLYPHS = {
+    town:'<path d="M12 42h40"/><path d="M17 42V29l7-6 7 6v13"/><path d="M31 42V24l8-7 8 7v18"/><path d="M8 49c5-3 10-3 15 0s10 3 15 0 10-3 18 0"/><path d="M39 17v-6"/><path d="M36 14h6"/>',
+    grave:'<path d="M18 48V26c0-8 6-14 14-14s14 6 14 14v22"/><path d="M12 48h40"/><path d="M32 20v18"/><path d="M23 29h18"/><path d="M18 33l-7-5"/><path d="M46 33l7-5"/>',
+    rune:'<path d="M32 10l5 16 16-5-11 12 11 12-16-5-5 16-5-16-16 5 11-12-11-12 16 5z"/><path d="M32 22v22"/><path d="M21 33h22"/>',
+    scales:'<path d="M32 12v38"/><path d="M19 22h26"/><path d="M19 22l-8 16h16z"/><path d="M45 22l-8 16h16z"/><path d="M24 50h16"/><path d="M28 12h8"/>',
+    mill:'<path d="M14 48h36"/><path d="M18 48V25l14-10 14 10v23"/><path d="M25 48V35h14v13"/><path d="M19 26h26"/><path d="M32 23v18"/><path d="M23 32h18"/>',
+    watch:'<path d="M32 9l21 8v15c0 12-8 19-21 23-13-4-21-11-21-23V17z"/><path d="M32 18v24"/><path d="M22 28h20"/><path d="M24 42l16-16"/>',
+    hall:'<path d="M10 46h44"/><path d="M14 42h36"/><path d="M16 24l16-10 16 10"/><path d="M19 24h26"/><path d="M21 42V28"/><path d="M32 42V28"/><path d="M43 42V28"/>',
+    candle:'<path d="M32 10c8 8 3 14 0 17-3-3-8-9 0-17z"/><path d="M25 31h14v19H25z"/><path d="M20 50h24"/><path d="M17 34c4-2 7-2 11 0s7 2 11 0 6-2 8 0"/>',
+    scope:'<path d="M17 40l22-22 8 8-22 22z"/><path d="M37 20l7-7 7 7-7 7"/><path d="M25 48l-7 6"/><path d="M25 48l8 6"/><path d="M12 54h31"/>',
+    wave:'<path d="M10 42c8-13 17-13 27-1 4 5 9 6 17 0"/><path d="M13 51c9-7 18-7 27 0 4 3 8 3 13 0"/><path d="M36 27c5-7 11-8 17-2-7 0-10 5-11 12"/><path d="M25 32c0-9 5-15 14-18-4 7-2 14 5 21"/>',
+    hearth:'<path d="M16 48h32V28H16z"/><path d="M20 28l12-12 12 12"/><path d="M28 46c-5-7 0-12 4-18 5 6 8 11 4 18"/><path d="M25 46h14"/>',
+    dragon:'<path d="M13 42c8-18 22-25 38-21-8 3-12 8-12 15"/><path d="M39 36c5-1 9 1 12 6-8 1-14-1-19-6"/><path d="M20 43c7 7 17 8 28 2"/><path d="M30 22l-3-9"/><path d="M36 21l5-8"/>',
+    tree:'<path d="M32 12v40"/><path d="M18 28l14-16 14 16"/><path d="M16 39l16-18 16 18"/><path d="M24 52h16"/><path d="M15 52h34"/>',
+    fish:'<path d="M11 33c10-12 24-12 38 0-14 12-28 12-38 0z"/><path d="M49 33l7-9v18z"/><path d="M23 33h1"/><path d="M30 25l-5-7"/><path d="M30 41l-5 7"/>',
+    person:'<path d="M32 15a10 10 0 1 1 0 20 10 10 0 0 1 0-20z"/><path d="M15 53c3-10 9-15 17-15s14 5 17 15"/>',
+    scroll:'<path d="M20 14h24v32c0 5-4 8-9 8H18c5 0 8-3 8-8V20c0-4-2-6-6-6z"/><path d="M20 14c-5 0-8 3-8 7h14"/><path d="M30 25h10"/><path d="M30 34h10"/><path d="M30 43h7"/>',
+    helmet:'<path d="M15 35c0-13 7-22 17-22s17 9 17 22"/><path d="M12 35h40"/><path d="M18 35v12h28V35"/><path d="M25 47v-8"/><path d="M39 47v-8"/>',
+    spark:'<path d="M32 10l4 16 16 4-16 4-4 16-4-16-16-4 16-4z"/><path d="M18 14l3 7"/><path d="M46 14l-3 7"/><path d="M18 46l3-7"/><path d="M46 46l-3-7"/>',
+    manor:'<path d="M12 48h40"/><path d="M16 48V25l16-10 16 10v23"/><path d="M23 48V34h18v14"/><path d="M24 25h16"/><path d="M20 21V13h8"/><path d="M36 13h8v8"/>',
+    dagger:'<path d="M43 12l9 9-24 24-9-9z"/><path d="M18 37l9 9"/><path d="M13 51l8-8"/><path d="M15 18h15v18H15z"/><path d="M19 24h7"/><path d="M19 30h7"/>',
+    book:'<path d="M12 16h18c5 0 8 3 8 8v28c0-5-3-8-8-8H12z"/><path d="M52 16H38c-5 0-8 3-8 8"/><path d="M52 16v28H38c-5 0-8 3-8 8"/><path d="M20 25h9"/><path d="M20 34h9"/>',
+    shield:'<path d="M32 9l21 8v15c0 12-8 19-21 23-13-4-21-11-21-23V17z"/><path d="M21 42l22-22"/><path d="M20 20l24 24"/>',
+    flask:'<path d="M25 12h14"/><path d="M28 12v15L16 49c-2 4 1 7 6 7h20c5 0 8-3 6-7L36 27V12"/><path d="M22 44c6 3 14 3 20 0"/><path d="M27 37h10"/>',
+    anchor:'<path d="M32 13v36"/><path d="M23 21h18"/><path d="M26 13a6 6 0 1 0 12 0 6 6 0 0 0-12 0z"/><path d="M16 37c1 9 7 15 16 15s15-6 16-15"/><path d="M13 37h10"/><path d="M41 37h10"/>',
+    door:'<path d="M20 52V14h24v38"/><path d="M24 52h25"/><path d="M36 33h2"/><path d="M20 14l24-4v42"/><path d="M26 19v26"/>',
+    quill:'<path d="M15 50c12-2 25-16 35-36-20 4-34 17-35 36z"/><path d="M20 44l18-18"/><path d="M25 50H13"/><path d="M35 20l9 9"/>',
+    mask:'<path d="M14 25c8-7 16-8 24-2 5-3 9-3 12-1-1 16-7 25-18 25S15 38 14 25z"/><path d="M22 32h8"/><path d="M39 32h7"/><path d="M27 42c3 2 7 2 10 0"/>',
+    compass:'<path d="M32 10a22 22 0 1 1 0 44 22 22 0 0 1 0-44z"/><path d="M39 25l-5 14-9 4 5-14z"/><path d="M32 32h1"/>',
+    bolt:'<path d="M36 8L18 35h13l-3 21 18-29H33z"/>',
+    card:'<path d="M18 20h25c4 0 7 3 7 7v18c0 4-3 7-7 7H18z"/><path d="M14 14h25"/><path d="M14 14v28"/><path d="M26 30h14"/><path d="M26 39h10"/>',
+    key:'<path d="M25 36a10 10 0 1 1 7-7l20 20-6 6-6-6-5 5-6-6 5-5z"/><path d="M18 29h1"/>',
+    coin:'<path d="M32 10a22 22 0 1 1 0 44 22 22 0 0 1 0-44z"/><path d="M25 28c0-4 3-7 8-7 3 0 6 1 8 3"/><path d="M39 39c-2 3-5 4-8 4-5 0-8-3-8-7"/><path d="M21 31h17"/><path d="M21 36h17"/>',
+    group:'<path d="M22 23a7 7 0 1 1 0 14 7 7 0 0 1 0-14z"/><path d="M42 23a7 7 0 1 1 0 14 7 7 0 0 1 0-14z"/><path d="M10 51c2-8 6-12 12-12s10 4 12 12"/><path d="M30 51c2-8 6-12 12-12s10 4 12 12"/>',
+    rune2:'<path d="M32 12v40"/><path d="M20 20h24"/><path d="M20 44h24"/><path d="M23 20l18 24"/><path d="M41 20L23 44"/>'
+  };
+
+  var ICONS = {
+    "sandpoint-town":"town", "boneyard":"grave", "thassilon-rune":"rune",
+    "mercantile-league":"scales", "scarnetti-consortium":"mill",
+    "town-watch":"watch", "town-hall":"hall", "cathedral":"candle",
+    "runewatchers":"scope", "bunyip-club":"wave", "deverin-family":"hearth",
+    "kaijitsu-family":"dragon", "scarnetti-family":"tree", "valdemar-family":"fish",
+    "abstalar-zantus":"candle", "kendra-deverin":"scroll", "belor-hemlock":"helmet",
+    "kaye-tesarani":"spark", "titus-scarnetti":"manor", "jubrayl-vhiski":"dagger",
+    "brodert-quink":"book", "armory":"shield", "alchemist":"flask", "harbor":"anchor"
+  };
+
+  function iconFor(el){
+    var key = el.getAttribute("data-icon");
+    if(key && ICONS[key]) return ICONS[key];
+
+    var title = (el.querySelector("h4") || {}).textContent || "";
+    var role = (el.querySelector(".role") || {}).textContent || "";
+    var text = (title + " " + role + " " + el.textContent).toLowerCase();
+
+    if(/door/.test(text)) return "door";
+    if(/downtime|vignette rewards|backstory/.test(text)) return "quill";
+    if(/vignette|theater/.test(text)) return "mask";
+    if(/map|navigation/.test(text)) return "compass";
+    if(/legacy|remaster/.test(text)) return "scales";
+    if(/recall|knowledge|book|read|academy|school|library|headmaster/.test(text)) return "book";
+    if(/combat|lightning|readiness/.test(text)) return "bolt";
+    if(/hero point|cards/.test(text)) return "card";
+    if(/coordinate|party/.test(text)) return "group";
+    if(/locksmith/.test(text)) return "key";
+    if(/money|gold|reward|jewel|coin|bank/.test(text)) return "coin";
+    if(/shop|store|market|league|merchant|boutique|grocer|trade|goods/.test(text)) return "scales";
+    if(/thassilon|rune|flesh|magic|sorcerer|wizard|curio|glasswork|pit|ruin/.test(text)) return "rune";
+    if(/cleric|healer|cathedral|gravedigger|boneyard|monastery|shrine|medicine/.test(text)) return "candle";
+    if(/watch|sheriff|fighter|stable|ranger|armorer|smith|weapon|armor|tannery/.test(text)) return "shield";
+    if(/alchemist|poison|solution|pillbug/.test(text)) return "flask";
+    if(/tavern|inn|harbor|ship|hagfish|fish|seafood|marsh/.test(text)) return "anchor";
+    if(/manor|residence|hostel|house|brewery|bakery/.test(text)) return "hearth";
+    if(/wagon|road|gate/.test(text)) return "compass";
+    if(/theater|perform/.test(text)) return "mask";
+    if(/butcher|meat|crime|thieves|bunyip|feedbag/.test(text)) return "dagger";
+    if(/garbage|dump|junk/.test(text)) return "wave";
+    return "rune2";
+  }
+
+  function makeIcon(kind){
+    var wrap = document.createElement("span");
+    wrap.className = "entity-icon";
+    wrap.setAttribute("aria-hidden", "true");
+    wrap.innerHTML =
+      '<svg viewBox="0 0 64 64" focusable="false">' +
+      '<circle cx="32" cy="32" r="29" fill="#211910" stroke="#6f552b" stroke-width="2"/>' +
+      '<circle cx="32" cy="32" r="24" fill="none" stroke="#cfa44a" stroke-opacity=".22" stroke-width="1.5"/>' +
+      '<g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">' +
+      (GLYPHS[kind] || GLYPHS.rune2) +
+      '</g></svg>';
+    return wrap;
+  }
+
+  function placeIcon(el){
+    if(el.querySelector(":scope > .entity-icon")) return;
+    var icon = makeIcon(iconFor(el));
+
+    if(el.tagName === "TR"){
+      var cell = el.querySelector("td,th");
+      if(cell) cell.insertBefore(icon, cell.firstChild);
+      return;
+    }
+    el.insertBefore(icon, el.firstChild);
+  }
+
+  document.querySelectorAll("[data-icon], .card, ul.loclist > li").forEach(placeIcon);
+})();
+
 /* ============================================================
    GLOSSARY  —  {c: category, d: brief definition}
    categories: person | place | concept | faction | family | deity | people
