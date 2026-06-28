@@ -449,10 +449,12 @@ const STORY = {
           heading: "The kiln",
           body:
             "To leave, they must die properly. Across the winter they gather sakaki slats, heron feathers, " +
-            "and rare incense; they fend off a jorogumo princess and the bird-masked psychopomps auditing " +
-            "Shinzo — who, when they compel J'nan to give up the party's names, gets them recited back in a " +
-            "deliberately spooky voice. Then they seal themselves in clay kilns and burn for five days — three " +
-            "crits and two successes, a wild success — and wake in the dark, hearing the governor's voice.",
+            "and rare incense; they kill a psychic copy of the jorogumo princess Ren Mae Lee — who slaps Orlen " +
+            "for offering a chair unbidden and calls their hundred-gold gift “perfectly acceptable for such a " +
+            "low-born town” — and host the bird-masked psychopomps auditing Shinzo, who, compelling J'nan to " +
+            "give up the party's names, get them recited back in a deliberately spooky voice. Then they seal " +
+            "themselves in clay kilns and burn for five days — three crits and two successes, a wild success — " +
+            "and wake in the dark, hearing the governor's voice.",
           quote: "“rip ourselves free from death and give in to our desires”",
         },
       ],
@@ -534,13 +536,12 @@ const STORY = {
             "Ren Mae Lee, the Jorogumo Princess — spider-pinned hair, a paint-splattered kimono, dark legs splayed behind her.",
           heading: "The bargain",
           body:
-            "She can teleport anywhere in Shenmen and she does not negotiate so much as inform — exacting and " +
-            "vain, she slaps Orlen for offering her a chair without asking, deems a hundred-gold gift " +
-            "“perfectly acceptable for such a low-born town,” and, asked whether the fealty is owed to her " +
-            "personally rather than to the realm, only smiles: “is that what I said?” The price of Willowshore's " +
-            "peace is five offerings: a bright bird of spring, fiery flowers of summer, sweet fruits of autumn, " +
-            "spiced winter tea, and a blessing of ancestors. (The spring offering is a performance at the Opera " +
-            "House, where Orlen promptly gets himself banned.)",
+            "This time she comes in person, and she can teleport anywhere in Shenmen; she does not negotiate " +
+            "so much as inform. Vain and exacting, she names the price of Willowshore's peace — five offerings: " +
+            "a bright bird of spring, fiery flowers of summer, sweet fruits of autumn, spiced winter tea, and a " +
+            "blessing of ancestors. Asked whether the fealty is owed to her personally rather than to the realm, " +
+            "she only smiles: “is that what I said?” (The spring offering is a performance at the Opera House, " +
+            "where Orlen promptly gets himself banned.)",
         },
         {
           type: "gallery",
@@ -623,6 +624,7 @@ const STORY = {
         {
           type: "full",
           img: "20260308205756",
+          focus: "0%",
           caption:
             "A dread wraith in the rotting manor, a skeletal hand reaching from tattered robes around a red core.",
           line: "I shall make a great sacrifice of you to our lord Kugaptee — and with your eyes, he shall be free.",
