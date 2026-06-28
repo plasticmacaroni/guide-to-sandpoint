@@ -534,7 +534,7 @@
         <div class="card"><div class="role">Healer</div><h4>Hannah Velerin</h4><p>Elf cleric of Gozreh; midwife and caregiver for those the Cathedral can't reach.</p></div>
         <div class="card"><div class="role">Gravedigger</div><h4>Naffer Vosk</h4><p>Cleric of Sarenrae; tends the Boneyard.</p></div>
         <div class="card"><div class="role">Stablemaster</div><h4>Daviren Hosk</h4><p>Ranger of Goblin Squash Stables; his goblin-hatred is off-putting.</p></div>
-        <div class="card"><div class="role">Locksmith</div><h4>Volioker Briskalberd</h4><p>Proudly incorruptible dwarf locksmith.</p></div>
+        <div class="card"><div class="role">Locksmith</div><h4>Volioker Briskalberd</h4><p>Proudly incorruptible dwarf who runs the town's Locksmith (S9) — a shop he never bothered to give a fancier name.</p></div>
         <div class="card"><div class="role">Harbormaster</div><h4>Jhalevia Stensin</h4><p>Foul-mouthed but fair; runs the shipyard.</p></div>
         <div class="card"><div class="role">Clerk</div><h4>Shayliss Vinder</h4><p>Genderfluid clerk increasingly running the Town Hall.</p></div>
         <div class="card"><div class="role">Garbage crew</div><h4>Gorvi</h4><p>Half-orc running the town's garbage with a rough crew; tied to the Bunyip Club.</p></div>
@@ -879,6 +879,11 @@ var GLOSS = {
   "Sandpoint Cathedral": {c:"place", d:"The town's great multi-faith temple (S1) — largest building in town and the party's patron faction."},
   "Cathedral": {c:"place", d:"Sandpoint's great multi-denominational temple (S1), led by Abstalar Zantus."},
   "Hagfish": {c:"place", d:"A beloved tavern (S33) home to the pet hagfish Norah and to 'yarning' contests."},
+  "Risa's Place": {c:"place", d:"A tavern (S13) famed for magic-enhanced home cooking; run by sorcerer Lanalee Magravi, carrying on her late mother Risa's tradition."},
+  "Curious Goblin": {c:"place", d:"A cozy bookstore (S22) of fiction and local history; bard Chask Haladan hosts gatherings there."},
+  "Bottled Solutions": {c:"place", d:"A tidier alchemy shop (S17) run by friendly half-elf Nisk Tander — cleaner than the Pillbug's Pantry, if a touch less reliable."},
+  "The Way North": {c:"place", d:"A map shop (S4) of regional and novelty treasure maps, run by gnome wizard Veznutt Parooh."},
+  "Brodert's House": {c:"place", d:"Home of sage Brodert Quink (S8) and the informal meeting place of the Runewatchers."},
   "Sandpoint Theater": {c:"place", d:"The town's prized playhouse (S23), run by impresario Cyrdak Drokkus."},
   "Pillbug's Pantry": {c:"place", d:"Cluttered alchemy shop (S16); the town's discreet source of poisons and drugs."},
   "Feathered Serpent": {c:"place", d:"Curio shop (S44); the best place in town to sell unusual or magical finds."},
@@ -886,6 +891,12 @@ var GLOSS = {
   "Goblin Squash Stables": {c:"place", d:"The town's largest stables (S38), run by goblin-hating ranger Daviren Hosk."},
   "Savah's Armory": {c:"place", d:"Sandpoint's largest weapon and armor shop (S12)."},
   "Sandpoint Garrison": {c:"place", d:"The town jail and guard barracks (S10), rebuilt after a sinkhole exposed a Thassilonian dungeon."},
+  "Garrison": {c:"place", d:"The Sandpoint Garrison (S10) — the town watch's barracks and jail, base of Sheriff Belor Hemlock."},
+  "Sandpoint Town Hall": {c:"place", d:"Sandpoint's town hall (S11) — the political heart of town, where meetings are held and Mayor Kendra Deverin governs; run day-to-day by clerk Shayliss Vinder."},
+  "Town Hall": {c:"place", d:"Sandpoint's town hall (S11) — the political heart of town, where Mayor Kendra Deverin governs and clerk Shayliss Vinder keeps things running."},
+  "Sandpoint Shipyard": {c:"place", d:"The town shipyard (S46) for building and repairing vessels; overseen by foul-mouthed but fair harbormaster Jhalevia Stensin."},
+  "Shipyard": {c:"place", d:"The Sandpoint Shipyard (S46) — the town's modest shipbuilding and repair yard, run by harbormaster Jhalevia Stensin."},
+  "Locksmith": {c:"place", d:"The town locksmith's shop (S9) on Tower Street, run by incorruptible dwarf Volioker Briskalberd — who never gave it a fancier name."},
   "Valdemar Manor": {c:"place", d:"The Valdemars' boarded-up, reputedly haunted mansion (S47)."},
   "Scarnetti Manor": {c:"place", d:"Seat of the Scarnetti Consortium (S48); home of Titus Scarnetti."},
   "Kaijitsu Manor": {c:"place", d:"Ameiko's ancestral home (S49), kept ready for the empress's return."},
@@ -948,7 +959,7 @@ var GLOSS = {
   "Maver Kesk": {c:"person", d:"Jeweler and moneylender at Rings and Things."},
   "Larz Rovanky": {c:"person", d:"Perfectionist leatherworker at the Rovanky Tannery."},
   "Das Korvut": {c:"person", d:"Hot-tempered smith of the Red Dog Smithy."},
-  "Aliver “Pillbug” Podiker": {c:"person", d:"Abrasive alchemist of Pillbug's Pantry; discreet source of poisons and drugs."},
+  "Podiker": {c:"person", d:"Aliver \"Pillbug\" Podiker — abrasive alchemist of the Pillbug's Pantry and discreet source of poisons and drugs."},
   "Pillbug": {c:"person", d:"Nickname of Aliver Podiker, abrasive alchemist of Pillbug's Pantry."},
   "Nisk Tander": {c:"person", d:"Friendly (if sloppy) half-elf alchemist at Bottled Solutions."},
   "Alma Avertin": {c:"person", d:"Baker at Sandpoint Savories."},
@@ -964,14 +975,17 @@ var GLOSS = {
   "Jhalevia Stensin": {c:"person", d:"Foul-mouthed but fair harbormaster of the Sandpoint Shipyard."},
   "Lanalee Magravi": {c:"person", d:"Sorcerer who runs Risa's Place, carrying on her late mother's craft."},
   "Risa Magravi": {c:"person", d:"Late keeper of Sandpoint's dream and legend lore; Lanalee's mother."},
-  "“Cracktooth” Berinni": {c:"person", d:"Jovial keeper of Cracktooth's Tavern who invites patrons to perform."},
+  "Berinni": {c:"person", d:"Jesk \"Cracktooth\" Berinni — the jovial keeper of Cracktooth's Tavern, who invites everyone to take the stage."},
+  "Cracktooth": {c:"person", d:"The nickname of Jesk Berinni, jovial keeper of Cracktooth's Tavern."},
+  "Cracktooth's Tavern": {c:"place", d:"A tavern (S18) popular with theatergoers; its keeper \"Cracktooth\" Berinni invites patrons to perform on open-mic nights."},
   "Jargie Quinn": {c:"person", d:"Keeper of the Hagfish and owner of its pet hagfish, Norah."},
   "Bethana Corwin": {c:"person", d:"Halfling innkeeper now running the Rusty Dragon in Ameiko's stead."},
   "Olmur Danavakus": {c:"person", d:"Beloved halfling grocer-guildmaster of the Grocer's Hall."},
   "Ibor Thorn": {c:"person", d:"Logger haunted by the grisly murder at the Scarnetti lumber mill."},
   "Courrin Whesterwill": {c:"person", d:"Miller at the Scarnetti grain mill."},
   "Jiolan Verneeth": {c:"person", d:"Agender witch who runs Mvashti's Place hostel for Varisian travelers."},
-  "Velarie Neserin": {c:"person", d:"Groundskeeper who keeps Kaijitsu Manor ready for Ameiko's return."},
+  "Velarie Neserin": {c:"person", d:"Major-domo who keeps Kaijitsu Manor ready for Ameiko's return; wife of Anyaia."},
+  "Anyaia": {c:"person", d:"Groundskeeper of Kaijitsu Manor and wife of major-domo Velarie Neserin; together they keep the manor ready for Empress Ameiko's return."},
   "Volioker Briskalberd": {c:"person", d:"Incorruptible dwarf locksmith."},
   "Veznutt Parooh": {c:"person", d:"Gnome wizard and mapmaker at The Way North."},
   "Ilsoari Gandethus": {c:"person", d:"Wizard headmaster of Turandarok Academy."},
@@ -1094,6 +1108,8 @@ var firstTerm = {};
     var nm = li.querySelector(".lname"); if(!nm) return;
     var k = nm.textContent.replace(/\s+/g," ").trim().toLowerCase();
     if(k && !locByName[k]) locByName[k] = li;
+    var sh = k.replace(/^(sandpoint|the) /,"");   /* short-form alias: "Sandpoint Town Hall" → "town hall" */
+    if(sh && sh !== k && !locByName[sh]) locByName[sh] = li;
   });
   function bestTarget(label){
     var k = label.replace(/\s+/g," ").trim().toLowerCase();
