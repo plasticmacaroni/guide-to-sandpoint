@@ -738,6 +738,42 @@ const STORY = {
     closerSource: "Aeson, reading the note — twenty years on",
   },
 
+  /* ---- LIMEADE (a running matter of grave importance) --------------- */
+  limeade: [
+    {
+      id: "limeade-1",
+      after: "ch2",
+      numeral: "I",
+      title: "The Pitcher",
+      body:
+        "Cum Soon Chung was a humble man with a single heirloom from his wife. Orlen lifts the heirloom " +
+        "pitcher from Cum Soon Chung's house. Cum Soon notices it is gone and spends several days sobbing " +
+        "and heartbroken. He asks the party to please do whatever they can to find it.",
+    },
+    {
+      id: "limeade-2",
+      after: "ch3",
+      numeral: "II",
+      title: "Orlen's Tell-Tale Pitcher",
+      body:
+        "Orlen's guilt builds as Cum Soon spends his time weeping, frantically searching, and having " +
+        "meltdowns. Orlen decides to do the right thing, and smashes the pitcher, creates a fake purchase " +
+        "receipt, and spends time “consoling” Cum Soon about whatever thief would do such a thing to a man " +
+        "with a tale as tragic as his.",
+    },
+    {
+      id: "limeade-3",
+      after: "ch5",
+      numeral: "III",
+      title: "A Bag of Limeade",
+      body:
+        "A hundred and fifteen years on, in the ruined real world, Cormag lifts an ornate pitcher from the " +
+        "same house and carries it back across death — handing Cum Soon the future's own version of it. Cum " +
+        "Soon pays one hundred platinum, and a bag of limeade. No one present questions how he had 100 " +
+        "platinum lying around.",
+    },
+  ],
+
   /* ---- GRIMOIRE (closing gallery of the season's faces) -------------- */
   grimoire: {
     title: "The Grimoire of Willowshore",

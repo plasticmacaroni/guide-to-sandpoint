@@ -48,6 +48,7 @@
 [data-mood="haunt"] { --bg:#0a0f12; --fg:#d9e2df; --muted:#6f8a86; --accent:var(--spirit); }
 [data-mood="ember"] { --bg:#171008; --fg:#f0e2cf; --muted:#c09a64; --accent:var(--lantern-hot); }
 [data-mood="gold"]  { --bg:#241a0c; --fg:#fbeccb; --muted:#d8b878; --accent:var(--lantern-hot); }
+[data-mood="limeade"]{ --bg:#16210f; --fg:#eef6da; --muted:#a9c181; --accent:#c8e06a; }
 
 /* ---------- LENIS (only active if the lib loads) ---------- */
 html.lenis,html.lenis body{ height:auto; }
@@ -287,6 +288,20 @@ h1,h2,h3{ font-family:"Cormorant Garamond",Georgia,serif; font-weight:600; line-
 .epi__src{ margin:.45rem 0 0; font-family:"Cinzel",serif; font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); opacity:.8; }
 .closer{ text-align:center; margin-top:12vh; font-family:"Cormorant Garamond",serif; font-style:italic; font-size:var(--step-3); color:var(--muted); }
 .closer__src{ text-align:center; margin-top:1.1rem; }
+
+/* ---------- LIMEADE INTERLUDE ---------- */
+.limeade-band{ padding:13vh clamp(20px,6vw,80px); text-align:center; }
+.limeade__inner{ max-width:60ch; margin-inline:auto; }
+.limeade__mark{
+  width:58px; height:58px; border-radius:50%; margin:0 auto 1.5rem;
+  background:
+    repeating-conic-gradient(rgba(255,255,255,.55) 0deg 1.4deg, transparent 1.4deg 45deg),
+    radial-gradient(circle, #eaffb4 0 54%, #a6d24a 54% 76%, #6f9e22 76% 100%);
+  box-shadow:0 0 34px color-mix(in srgb,var(--accent) 45%, transparent), inset 0 0 14px rgba(0,0,0,.25);
+}
+.limeade__title{ font-size:var(--step-3); margin:.2rem 0 1.2rem; }
+.limeade__body{ color:var(--fg); opacity:.92; max-width:54ch; margin:0 auto; }
+.limeade__quote{ margin:1.4rem auto 0; max-width:40ch; border:0; padding:0; text-align:center; }
 
 /* ---------- COLOPHON ---------- */
 .colophon{ text-align:center; padding:14vh 6vw 20vh; }

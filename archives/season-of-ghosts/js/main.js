@@ -195,6 +195,19 @@
       </section>`;
   }
 
+  function renderLimeade(L) {
+    return `
+      <section class="limeade-band" id="${esc(L.id)}" data-mood="limeade">
+        <div class="limeade__inner reveal">
+          <div class="limeade__mark" aria-hidden="true"></div>
+          <p class="eyebrow">Limeade · ${esc(L.numeral)}</p>
+          <h2 class="limeade__title">${esc(L.title)}</h2>
+          <p class="limeade__body">${esc(L.body)}</p>
+          ${L.quote ? `<p class="pull limeade__quote">${esc(L.quote)}</p>` : ""}
+        </div>
+      </section>`;
+  }
+
   function renderColophon() {
     return `
       <footer class="colophon" data-mood="night">
@@ -207,11 +220,13 @@
   /* ===================================================================
      BUILD THE PAGE
   =================================================================== */
+  const limeadeAfter = (id) =>
+    (STORY.limeade || []).filter((l) => l.after === id).map(renderLimeade).join("");
   const html = [
     renderHero(STORY.meta),
     renderParty(STORY.party),
-    STORY.chapters.map(renderChapter).join(""),
-    renderEpilogue(STORY.epilogues),
+    STORY.chapters.map((c) => renderChapter(c) + limeadeAfter(c.id)).join(""),
+    renderEpilogue(STORY.epilogues) + limeadeAfter("epilogue"),
     renderGrimoire(STORY.grimoire),
     renderColophon(),
   ].join("");
